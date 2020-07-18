@@ -14,7 +14,7 @@
     @if (!empty($query) && strlen($query) > 1)
         <div class="fixed top-0 right-0 bottom-0 left-0" wire:click="clear"></div>
 
-        <div class="absolute z-10 bg-white w-full rounded-t-none shadow-lg">
+        <div class="absolute z-10 bg-white w-full rounded-t-none shadow-lg max-h-60 overflow-y-auto">
             @foreach($cities as $index => $city)
                 <a href="#"
                     wire:click.prevent="setCity('{{$city['name']}}')"
