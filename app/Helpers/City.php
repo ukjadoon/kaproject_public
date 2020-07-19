@@ -177,4 +177,9 @@ class City
     {
         return $this->cities;
     }
+
+    public function getRandomCity(): string
+    {
+        return $this->cities[array_rand($this->cities)]['name'];
+    }
 }

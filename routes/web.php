@@ -17,6 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/ka', function () {
-    return view('ka');
+Route::get('/welcome', function () {
+    return view('welcome');
 });
+
+Route::get('/campaign/{code}', function ($code) {
+    $campaign = app('App\Campaign')->where('code', $code)->firstOrFail();
+
+    return $campaign;
+})->name('campaign-landing');
+
+Route::get('/backend', function () {
+    return view('backend.login');
+})->name('backend-login');
+
+Route::get('/backend/dashboard', function () {
+    return view('backend.dashboard');
+})->name('backend-dashboard');

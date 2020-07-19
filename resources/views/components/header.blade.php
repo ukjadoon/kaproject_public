@@ -22,10 +22,10 @@
                 </div>
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex-shrink-0 flex items-center">
-                        <img class="block lg:hidden h-16 w-auto"
-                            src="img/ka-logo.png" alt="Byggkostnad logo">
-                        <img class="hidden lg:block h-16 w-auto"
-                            src="img/ka-logo.png" alt="Byggkostnad logo">
+                        <img class="block lg:hidden h-9 w-auto"
+                            src="/img/ka-logo.png" alt="byggkostnad logo">
+                        <img class="hidden lg:block h-9 w-auto"
+                            src="/img/ka-logo.png" alt="byggkostnad logo">
                     </div>
                     <div class="hidden sm:ml-6 sm:flex">
                         <a href="#"
