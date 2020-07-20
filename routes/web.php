@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +38,18 @@ Route::get('/backend/login', function () {
 })->name('backend-login');
 
 Route::post('/backend/login', function () {
+    $credentials = request()->only('email', 'password');
+    if (Auth::attempt($credentials)) {
 
+        return redirect()->intended('/backend/dashboard');
+    }
 })->name('backend-login');
+
+Route::get('/backend/logout', function () {
+    Auth::logout();
+
+    return redirect('/backend/login');
+})->name('backend-logout');
 
 Route::get('/backend/dashboard', function () {
     return view('backend.dashboard');
