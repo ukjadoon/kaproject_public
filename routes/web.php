@@ -28,6 +28,11 @@ Route::get('/campaign/{code}', function ($code) {
 })->name('campaign-landing');
 
 Route::get('/backend', function () {
+
+    return redirect('/backend/login');
+});
+
+Route::get('/backend/login', function () {
     return view('backend.login');
 })->name('backend-login');
 

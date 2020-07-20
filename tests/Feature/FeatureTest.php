@@ -38,7 +38,7 @@ test('The city prices should be an integer', function () {
 });
 
 test('It should have a backend login page')
-    ->get('/backend')
+    ->get('/backend/login')
     ->assertOk();
 
 test('It should have a backend dashboard page')
