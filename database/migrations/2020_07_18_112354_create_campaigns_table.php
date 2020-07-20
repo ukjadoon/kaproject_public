@@ -20,6 +20,7 @@ class CreateCampaignsTable extends Migration
             $table->text('description')->nullable();
             $table->string('google_tag')->nullable();
             $table->string('facebook_pixel')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

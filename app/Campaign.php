@@ -10,4 +10,9 @@ class Campaign extends Model
     {
         return $this->belongsToMany(City::class, 'campaign_city')->withTimestamps();
     }
+
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class, 'campaign_client')->withTimestamps();
+    }
 }

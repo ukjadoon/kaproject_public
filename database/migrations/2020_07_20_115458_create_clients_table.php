@@ -23,6 +23,7 @@ class CreateClientsTable extends Migration
             $table->text('typeform_chatbot_code')->nullable();
             $table->string('logo_url')->nullable();
             $table->string('profile_picture_url')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
