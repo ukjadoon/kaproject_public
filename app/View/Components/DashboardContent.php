@@ -30,6 +30,6 @@ class DashboardContent extends Component
      */
     public function render()
     {
-        return view('components.dashboard-content');
+        return view('components.dashboard.dashboard-content');
     }
 }
