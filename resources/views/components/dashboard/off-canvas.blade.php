@@ -1,17 +1,9 @@
   <!-- Off-canvas menu for mobile -->
-  <div 
-    class="md:hidden"
-    >
-    <div
-        class="fixed inset-0 flex z-40"
-        x-show="menu"
-        x-transition:enter="transition-opacity ease-linear duration-300"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition-opacity ease-linear duration-300"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
-        >
+  <div class="md:hidden">
+      <div class="fixed inset-0 flex z-40" x-show="menu"
+          x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0"
+          x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300"
+          x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
           <!--
         Off-canvas menu overlay, show/hide based on off-canvas menu state.
 
@@ -22,10 +14,7 @@
           From: "opacity-100"
           To: "opacity-0"
       -->
-          <div 
-            class="fixed inset-0"
-
-            >
+          <div class="fixed inset-0">
               <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
           </div>
           <!--
@@ -38,16 +27,11 @@
           From: "translate-x-0"
           To: "-translate-x-full"
       -->
-          <div 
-            class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white"
-            x-show="menu"
-            x-transition:enter="transition ease-in-out duration-300 transform"
-            x-transition:enter-start="-translate-x-full"
-            x-transition:enter-end="translate-x-0"
-            x-transition:leave="transition ease-in-out duration-300 transform"
-            x-transition:leave-start="translate-x-0"
-            x-transition:leave-end="-translate-x-full"
-            >
+          <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white" x-show="menu"
+              x-transition:enter="transition ease-in-out duration-300 transform"
+              x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+              x-transition:leave="transition ease-in-out duration-300 transform"
+              x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full">
               <div class="absolute top-0 right-0 -mr-14 p-1">
                   <button
                       class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
@@ -59,8 +43,7 @@
                   </button>
               </div>
               <div class="flex-shrink-0 flex items-center px-4">
-                  <img class="h-8 w-auto" src="/img/ka-logo.png"
-                      alt="byggkostnad logo">
+                  <img class="h-8 w-auto" src="/img/ka-logo.png" alt="byggkostnad logo">
               </div>
               <div class="mt-5 flex-1 h-0 overflow-y-auto">
                   <nav class="px-2">
@@ -75,12 +58,16 @@
                       </a>
                       <a href="#"
                           class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150">
-                          <svg class="mr-4 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
-                              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
+                              fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                              </path>
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                           </svg>
-                          Team
+                          Cities
                       </a>
                       <a href="#"
                           class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150">
@@ -89,7 +76,7 @@
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                           </svg>
-                          Projects
+                          Clients
                       </a>
                       <a href="#"
                           class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150">
@@ -98,16 +85,7 @@
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                           </svg>
-                          Calendar
-                      </a>
-                      <a href="#"
-                          class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150">
-                          <svg class="mr-4 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
-                              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                          </svg>
-                          Documents
+                          Campaigns
                       </a>
                       <a href="#"
                           class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-100 transition ease-in-out duration-150">
