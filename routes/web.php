@@ -36,6 +36,10 @@ Route::get('/backend/login', function () {
     return view('backend.login');
 })->name('backend-login');
 
+Route::post('/backend/login', function () {
+
+})->name('backend-login');
+
 Route::get('/backend/dashboard', function () {
     return view('backend.dashboard');
 })->name('backend-dashboard');

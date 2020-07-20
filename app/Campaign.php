@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campaign extends Model
 {
-    protected $casts = [
-        'cities' => 'json',
-    ];
+    public function cities()
+    {
+        return $this->belongsToMany(City::class, 'campaign_city')->withTimestamps();
+    }
 }
