@@ -40,10 +40,21 @@ test('The city prices should be an integer', function () {
     assertIsInt($city->price);
 });
 
-test('it should have a city backend page', function () {
-    $this->get('/backend/cities')
-        ->assertOk();
-});
+test('it should have a cities backend page')
+    ->get('/backend/cities')
+    ->assertSee('Cities');
+
+test('it should have a clients backend page')
+    ->get('/backend/clients')
+    ->assertSee('Clients');
+
+test('it should have a campaigns backend page')
+    ->get('/backend/campaigns')
+    ->assertSee('Campaigns');
+
+test('it should have a reports backend page')
+    ->get('/backend/reports')
+    ->assertSee('Reports');
 
 /**
  * Backend tests

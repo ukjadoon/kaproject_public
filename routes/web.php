@@ -50,10 +50,27 @@ Route::prefix('backend')->group(function () {
         return redirect('/backend/login');
     })->name('backend-logout');
     Route::get('dashboard', function () {
+
         return view('backend.dashboard');
     })->name('backend-dashboard');
 
     Route::get('cities', function () {
-        return 'ok';
-    });
+
+        return view('backend.cities');
+    })->name('backend-cities');
+
+    Route::get('clients', function () {
+
+        return view('backend.clients');
+    })->name('backend-clients');
+
+    Route::get('campaigns', function () {
+
+        return view('backend.campaigns');
+    })->name('backend-campaigns');
+
+    Route::get('reports', function () {
+
+        return view('backend.reports');
+    })->name('backend-reports');
 });
