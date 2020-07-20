@@ -123,6 +123,14 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    /**
+     * Custom key config variables
+     */
+
+     'admin_names' => env('ADMIN_NAMES'),
+     'admin_emails' => env('ADMIN_EMAILS'),
+     'admin_passwords' => env('ADMIN_PASSWORDS'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
