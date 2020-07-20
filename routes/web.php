@@ -33,24 +33,27 @@ Route::get('/backend', function () {
     return redirect('/backend/login');
 });
 
-Route::get('/backend/login', function () {
-    return view('backend.login');
-})->name('backend-login');
+Route::prefix('backend')->group(function () {
+    Route::get('login', function () {
+        return view('backend.login');
+    })->name('backend-login');
+    Route::post('login', function () {
+        $credentials = request()->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+    
+            return redirect()->intended('/backend/dashboard');
+        }
+    })->name('backend-login');
+    Route::get('logout', function () {
+        Auth::logout();
+    
+        return redirect('/backend/login');
+    })->name('backend-logout');
+    Route::get('dashboard', function () {
+        return view('backend.dashboard');
+    })->name('backend-dashboard');
 
-Route::post('/backend/login', function () {
-    $credentials = request()->only('email', 'password');
-    if (Auth::attempt($credentials)) {
-
-        return redirect()->intended('/backend/dashboard');
-    }
-})->name('backend-login');
-
-Route::get('/backend/logout', function () {
-    Auth::logout();
-
-    return redirect('/backend/login');
-})->name('backend-logout');
-
-Route::get('/backend/dashboard', function () {
-    return view('backend.dashboard');
-})->name('backend-dashboard');
+    Route::get('cities', function () {
+        return 'ok';
+    });
+});
