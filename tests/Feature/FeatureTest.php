@@ -3,6 +3,12 @@
 use function Pest\Livewire\livewire;
 use App\Campaign;
 use App\City;
+use Illuminate\Support\Facades\Artisan;
+
+test('Initialize and seed', function () {
+    Artisan::call('migrate:fresh --seed');
+    assertTrue(true);
+});
 
 test('You can access the root route')
     ->get('/')
@@ -35,7 +41,6 @@ test('It should have a campaign landing page', function () {
  * City tests
  */
 test('The city prices should be an integer', function () {
-    factory(City::class)->create();
     $city = app('App\City')::first();
     assertIsInt($city->price);
 });
@@ -43,10 +48,6 @@ test('The city prices should be an integer', function () {
 test('it should have a cities backend page')
     ->get('/backend/cities')
     ->assertSee('Cities');
-
-test('it should have a clients backend page')
-    ->get('/backend/clients')
-    ->assertSee('Clients');
 
 test('it should have a campaigns backend page')
     ->get('/backend/campaigns')
@@ -70,3 +71,15 @@ test('It should have a backend login page')
 test('It should have a backend dashboard page')
     ->get('backend/dashboard')
     ->assertOk();
+
+/**
+ * Client tests
+ */
+
+test('it should have a clients backend page')
+    ->get('/backend/clients')
+    ->assertSee('Clients');
+
+test('it should have the client-list livewire component on the clients backend endpoint')
+    ->get('/backend/clients')
+    ->assertSeeLivewire('client-list');
