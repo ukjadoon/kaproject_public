@@ -25,7 +25,7 @@
                                 {{ $city['name'] }}
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                <div>
+                                <div class="w-40 min-w-full">
                                     <div class="mt-1 relative rounded-md shadow-sm">
                                         <input
                                             class="form-input block w-full pl-7 pr-12 sm:text-sm sm:leading-5" type="number" min="0" step="1"

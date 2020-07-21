@@ -3,6 +3,7 @@
 use function Pest\Livewire\livewire;
 use App\Campaign;
 use App\City;
+use App\Client;
 use Illuminate\Support\Facades\Artisan;
 
 test('Initialize and seed', function () {
@@ -83,3 +84,13 @@ test('it should have a clients backend page')
 test('it should have the client-list livewire component on the clients backend endpoint')
     ->get('/backend/clients')
     ->assertSeeLivewire('client-list');
+
+test('it should have a client edit page on the backend', function () {
+    $client = Client::first();
+    $this->get('/backend/clients/' . $client->id)->assertOk();
+});
+
+test('it should have a client-edit livewire component on the backend', function () {
+    $client = Client::first();
+    $this->get('/backend/clients/' . $client->id)->assertSeeLivewire('client-editor');
+});

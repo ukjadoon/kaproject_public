@@ -1,5 +1,6 @@
 <?php
 
+use App\Client;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,6 +64,12 @@ Route::prefix('backend')->group(function () {
 
         return view('backend.clients');
     })->name('backend-clients');
+
+    Route::get('clients/{id}', function ($id) {
+        $client = Client::findOrFail($id);
+
+        return view('backend.client-edit')->with(compact('client'));
+    })->where('id', '[0-9]+')->name('backend-client-edit');
 
     Route::get('campaigns', function () {
 
