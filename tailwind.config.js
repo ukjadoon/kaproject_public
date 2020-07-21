@@ -8,7 +8,9 @@ module.exports = {
             },
         },
     },
-    variants: {},
+    variants: {
+        backgroundColor: ['odd', 'even', 'hover', 'focus', 'active', 'first']
+    },
     purge: {
         content: [
             './app/**/*.php',

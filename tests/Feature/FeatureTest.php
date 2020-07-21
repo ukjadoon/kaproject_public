@@ -56,6 +56,10 @@ test('it should have a reports backend page')
     ->get('/backend/reports')
     ->assertSee('Reports');
 
+test('it should see the city editor livewire component on the cities backend endpoint')
+    ->get('/backend/cities')
+    ->assertSeeLivewire('city-editor');
+
 /**
  * Backend tests
  */
