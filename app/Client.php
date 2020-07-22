@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
+    protected $fillable = ['name', 'email', 'homepage_url', 'about'];
     public function campaigns()
     {
         return $this->belongsToMany(Campaign::class, 'campaign_client')->withTimestamps();

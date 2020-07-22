@@ -17,8 +17,9 @@
             Name of the client
           </label>
           <div class="mt-1 rounded-md shadow-sm">
-            <input id="name" type="text" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" wire:model.debounce.500ms="client.name" autocomplete="off">
+            <input id="name" type="text" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" wire:model.lazy="client.name" autocomplete="off">
           </div>
+          <x-dashboard.error property="client.name"></x-dashboard.error>
         </div>
 
         <div class="sm:col-span-2">
@@ -26,8 +27,9 @@
             Email address
           </label>
           <div class="mt-1 rounded-md shadow-sm">
-            <input id="email" type="email" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+            <input id="email" type="email" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" wire:model.lazy="client.email" autocomplete="off">
           </div>
+          <x-dashboard.error property="client.email"></x-dashboard.error>
         </div>
 
         <div class="sm:col-span-2">
@@ -35,8 +37,9 @@
             Contact number
           </label>
           <div class="mt-1 rounded-md shadow-sm">
-            <input id="phone" type="text" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+            <input id="phone" type="text" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" wire:model.lazy="client.contact_number" autocomplete="off">
           </div>
+          <x-dashboard.error property="client.contact_number"></x-dashboard.error>
         </div>
 
         <div class="sm:col-span-6">
@@ -62,8 +65,9 @@
             Homepage of the client
           </label>
           <div class="mt-1 rounded-md shadow-sm">
-            <input id="homepage" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" wire:model.debounce.500ms="client.homepage_url">
+            <input id="homepage" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" wire:model.lazy="client.homepage_url">
           </div>
+          <x-dashboard.error property="client.homepage_url"></x-dashboard.error>
         </div>
 
         <div class="sm:col-span-6">
@@ -71,7 +75,7 @@
             About
           </label>
           <div class="mt-1 rounded-md shadow-sm">
-            <textarea id="about" rows="3" class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"></textarea>
+            <textarea id="about" rows="3" class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" wire:model.lazy="client.about"></textarea>
           </div>
           <p class="mt-2 text-sm text-gray-500">Write a few sentences about the client.</p>
         </div>
@@ -135,13 +139,13 @@
   <div class="mt-8 border-t border-gray-200 pt-5">
     <div class="flex justify-end">
       <span class="inline-flex rounded-md shadow-sm">
-        <button type="button" class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
-          Cancel
+        <button type="button" class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out" wire:click.prevent="initialize()">
+          Reset
         </button>
       </span>
       <span class="ml-3 inline-flex rounded-md shadow-sm">
-        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out">
-          Save
+        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out" wire:click.prevent="updateClient">
+          Update
         </button>
       </span>
     </div>
