@@ -1,8 +1,8 @@
 <!-- Profile dropdown -->
-<div class="ml-3 relative">
+<div class="ml-3 relative" x-data="{dropdown: false}">
     <div>
         <button class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:shadow-outline"
-            id="user-menu" aria-label="User menu" aria-haspopup="true">
+            id="user-menu" aria-label="User menu" aria-haspopup="true" @click="dropdown = ! dropdown">
             <img class="h-8 w-8 rounded-full"
                 src="https://picsum.photos/seed/picsum/50"
                 alt="">
@@ -18,7 +18,7 @@
                 From: "transform opacity-100 scale-100"
                 To: "transform opacity-0 scale-95"
             -->
-    <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+    <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg" x-show="dropdown" @click.away="dropdown = false">
         <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical"
             aria-labelledby="user-menu">
             <!--a href="#"

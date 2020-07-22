@@ -21,6 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('homepage_url')->nullable();
             $table->text('typeform_survey_code')->nullable();
             $table->text('typeform_chatbot_code')->nullable();
+            $table->text('about')->nullable();
             $table->string('logo_url')->nullable();
             $table->string('profile_picture_url')->nullable();
             $table->softDeletes();
