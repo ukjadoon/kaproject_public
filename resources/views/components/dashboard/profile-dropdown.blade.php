@@ -18,7 +18,7 @@
                 From: "transform opacity-100 scale-100"
                 To: "transform opacity-0 scale-95"
             -->
-    <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg" x-show="dropdown" @click.away="dropdown = false">
+    <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg" x-show.transition="dropdown" @click.away="dropdown = false">
         <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical"
             aria-labelledby="user-menu">
             <!--a href="#"

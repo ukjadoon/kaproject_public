@@ -11,6 +11,6 @@ $factory->define(Client::class, function (Faker $faker) {
         'email' => $faker->email,
         'contact_number' => $faker->phoneNumber,
         'homepage_url' => $faker->url,
-        'profile_picture_url' => 'https://picsum.photos/seed/picsum/100',
+        'photo' => 'https://picsum.photos/seed/picsum/100',
     ];
 });

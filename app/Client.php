@@ -16,4 +16,9 @@ class Client extends Model
     {
         return $this->belongsToMany(City::class, 'city_client')->withTimestamps();
     }
+
+    public function logo()
+    {
+        return $this->hasOne(Logo::class);
+    }
 }

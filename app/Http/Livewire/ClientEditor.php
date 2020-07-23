@@ -6,9 +6,14 @@ use Livewire\Component;
 use App\Client;
 use App\City;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
+use Livewire\WithFileUploads;
+use Intervention\Image\Facades\Image;
 
 class ClientEditor extends Component
 {
+    use WithFileUploads;
+
     public $clientId;
 
     public $clientModel;
@@ -20,6 +25,10 @@ class ClientEditor extends Component
     public $checkedCities;
 
     public $chosenCityNames;
+
+    public $logo;
+
+    public $photo;
 
     protected $casts = [
         'cities' => 'collection',
@@ -62,9 +71,31 @@ class ClientEditor extends Component
             'client.email' => 'required|email',
             'client.homepage_url' => 'url|nullable',
             'client.about' => 'string|nullable',
+            'logo' => 'image|max:1024|nullable',
         ]);
         $clientData = Arr::get($validatedData, 'client');
+        if ($this->logo) {
+            if ($this->clientModel->logo) {
+                Storage::disk('logos')->delete($this->clientModel->logo);
+            }
+            $this->clientModel->logo = $this->logo->store($this->clientId, 'logos');
+            $image = Image::make(Storage::disk('logos')->get($this->clientModel->logo));
+            if ($image->height() > 100) {
+                 $image->resize(null, 100, function ($constraint) {
+                     $constraint->aspectRatio();
+                 })->encode(pathinfo($this->clientModel->logo)['extension'], 90);
+                Storage::disk('logos')->put($this->clientModel->logo, $image);
+            }
+            $this->clientModel->update();
+        }
         $this->clientModel->update($clientData);
         $this->emit('success', 'The client was updated successfully');
+    }
+
+    public function updatedLogo()
+    {
+        $this->validate([
+            'logo' => 'image|max:1024' // 1MB max
+        ]);
     }
 }
