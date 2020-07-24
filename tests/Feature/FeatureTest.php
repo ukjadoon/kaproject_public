@@ -30,12 +30,30 @@ test('You should see the city-selector Livewire component on the welcome route',
 //     $this->assertTrue(in_array('Solna', $campaign->cities['names']));
 // });
 
+/**
+ * Campaign tests
+ */
+
 test('It should have a campaign landing page', function () {
     factory(Campaign::class)->create();
     $campaign = Campaign::first();
     $campaignCode = $campaign->code;
     $this->get('/campaign/' . $campaignCode)
         ->assertOk();
+});
+
+test('it should see Campaigns on the campaign create page', function () {
+    $this->get('/backend/campaigns/create')
+        ->assertSee('Campaigns');
+});
+
+test('it should have a backend campaign-create page')
+    ->get('/backend/campaigns/create')
+    ->assertOk();
+
+test('it should see the campaign-creator Livewire component on the campaign create page', function () {
+    $this->get('/backend/campaigns/create')
+        ->assertSeeLivewire('campaign-creator');
 });
 
 /**
@@ -85,6 +103,11 @@ test('it should have the client-list livewire component on the clients backend e
     ->get('/backend/clients')
     ->assertSeeLivewire('client-list');
 
+test('it should have the new client button on the clients list page', function () {
+    $this->get('/backend/clients')
+        ->assertSee('New Client');
+});
+
 test('it should have a client edit page on the backend', function () {
     $client = Client::first();
     $this->get('/backend/clients/' . $client->id)->assertOk();
@@ -93,4 +116,13 @@ test('it should have a client edit page on the backend', function () {
 test('it should have a client-edit livewire component on the backend', function () {
     $client = Client::first();
     $this->get('/backend/clients/' . $client->id)->assertSeeLivewire('client-editor');
+});
+
+test('it should have the client-creator livewire component on the client create endpoint')
+    ->get('/backend/clients/create')
+    ->assertSeeLivewire('client-creator');
+
+test('it should have a new client page', function () {
+    $this->get('backend/clients/create')
+        ->assertOk();
 });

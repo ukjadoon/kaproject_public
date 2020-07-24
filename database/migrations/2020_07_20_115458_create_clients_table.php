@@ -17,7 +17,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('contact_number');
+            $table->string('contact_number')->nullable();
             $table->string('homepage_url')->nullable();
             $table->text('typeform_survey_code')->nullable();
             $table->text('typeform_chatbot_code')->nullable();

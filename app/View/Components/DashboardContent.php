@@ -14,13 +14,40 @@ class DashboardContent extends Component
     public $heading;
 
     /**
-     * Create a new component instance
+     * The text of the button
+     *
+     * @var string
+     */
+    public $buttonText;
+
+    /**
+     * The route for the button
+     *
+     * @var string
+     */
+    public $buttonRoute;
+
+    /**
+     * The route to go back to for the back button
+     *
+     * @var string
+     */
+    public $backButtonRoute;
+
+    /**
+     * Get a new instance of a component
      *
      * @param string $heading
+     * @param string $buttonText
+     * @param string $buttonRoute
+     * @param string $backButtonRoute
      */
-    public function __construct(string $heading)
+    public function __construct(string $heading, string $buttonText = '', string $buttonRoute = '', string $backButtonRoute = '')
     {
         $this->heading = $heading;
+        $this->buttonText = $buttonText;
+        $this->buttonRoute = $buttonRoute;
+        $this->backButtonRoute = $backButtonRoute;
     }
 
     /**

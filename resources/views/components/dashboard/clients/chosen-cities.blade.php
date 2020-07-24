@@ -3,6 +3,6 @@
           Selected Cities
         </h3>
         <p class="mt-1 text-sm leading-5 text-gray-500">
-          {{ $chosenCityNames }}
+          {{ ! empty($chosenCityNames) ? $chosenCityNames : '' }}
         </p>
       </div>

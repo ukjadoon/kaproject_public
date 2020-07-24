@@ -65,6 +65,11 @@ Route::prefix('backend')->group(function () {
         return view('backend.clients');
     })->name('backend-clients');
 
+    Route::get('clients/create', function () {
+
+        return view('backend.client-create');
+    })->name('backend-client-create');
+
     Route::get('clients/{id}', function ($clientId) {
 
         return view('backend.client-edit')->with(['clientId' => $clientId]);
@@ -74,6 +79,11 @@ Route::prefix('backend')->group(function () {
 
         return view('backend.campaigns');
     })->name('backend-campaigns');
+
+    Route::get('campaigns/create', function () {
+
+        return view('backend.campaign-create');
+    })->name('backend-campaign-create');
 
     Route::get('reports', function () {
 
