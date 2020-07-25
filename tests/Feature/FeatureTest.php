@@ -131,3 +131,8 @@ test('it should have a campaign edit page', function () {
     $this->get('backend/campaigns/1')
         ->assertOk();
 });
+
+test('it should see the campaign editor Livewire component when accessing the campaign edit page', function () {
+    $this->get('backend/campaigns/1')
+        ->assertSeeLivewire('campaign-editor');
+});
