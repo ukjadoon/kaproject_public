@@ -18,13 +18,13 @@ class CampaignList extends Component
         $this->campaigns = Campaign::orderBy('created_at', 'DESC')->get();
     }
 
-    public function getCitiesForCampaign($id)
+    public function getClientsForCampaign($id)
     {
         $campaign = $this->campaigns->where('id', $id)->first();
-        $cities = $campaign->cities;
-        if ($cities) {
+        $clients = $campaign->clients;
+        if ($clients) {
 
-            return implode(', ', $cities->pluck('name')->all());
+            return implode(', ', $clients->pluck('name')->all());
         }
     }
     public function render()

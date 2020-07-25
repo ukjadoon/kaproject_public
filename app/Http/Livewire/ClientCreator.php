@@ -40,7 +40,7 @@ class ClientCreator extends Component
 
     public function updatedCheckedCities()
     {
-        if (empty($this->chosenCityNames)) {
+        if (empty($this->checkedCities)) {
 
             return;
         }

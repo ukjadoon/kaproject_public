@@ -17,6 +17,7 @@ class CreateCitiesTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->integer('price')->default(25000);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

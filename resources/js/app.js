@@ -12,3 +12,7 @@ window.livewire.on('success', message => {
     timer: 4000
   });
 });
+
+window.livewire.on('back', route => {
+    window.location.replace(route);
+});

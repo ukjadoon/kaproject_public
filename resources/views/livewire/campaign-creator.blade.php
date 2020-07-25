@@ -19,7 +19,7 @@
                         <div class="mt-1 rounded-md shadow-sm">
                             <input id="name" type="text"
                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                wire:model.lazy="campaign.name" autocomplete="off">
+                                wire:model.debounce.300ms="campaign.name" autocomplete="off">
                         </div>
                         <x-dashboard.error property="campaign.name"></x-dashboard.error>
                     </div>
@@ -38,60 +38,61 @@
 
                     <div class="sm:col-span-3">
                         <label for="google-tag" class="block text-sm font-medium leading-5 text-gray-700">
-                            Google Tag
+                            Google Tag (optional)
                         </label>
                         <div class="mt-1 rounded-md shadow-sm">
                             <input id="google-tag"
                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                wire:model.lazy="campaign.google_tag">
+                                wire:model.debounce.300ms="campaign.google_tag">
                         </div>
                         <x-dashboard.error property="campaign.google_tag"></x-dashboard.error>
                     </div>
 
                     <div class="sm:col-span-3">
                         <label for="facebook-pixel" class="block text-sm font-medium leading-5 text-gray-700">
-                            Facebook Pixel
+                            Facebook Pixel (optional)
                         </label>
                         <div class="mt-1 rounded-md shadow-sm">
                             <input id="facebook-pixel"
                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                wire:model.lazy="campaign.facebook_pixel">
+                                wire:model.debounce.300ms="campaign.facebook_pixel">
                         </div>
                         <x-dashboard.error property="campaign.facebook_pixel"></x-dashboard.error>
                     </div>
 
                     <div class="sm:col-span-6">
                         <label for="about" class="block text-sm font-medium leading-5 text-gray-700">
-                            Description
+                            Description (optional)
                         </label>
                         <div class="mt-1 rounded-md shadow-sm">
                             <textarea id="description" rows="3"
                                 class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                wire:model.lazy="campaign.description"></textarea>
+                                wire:model.debounce.300ms="campaign.description"></textarea>
                         </div>
                         <p class="mt-2 text-sm text-gray-500">Write a few sentences about the campaign.</p>
                     </div>
                 </div>
             </div>
             <div class="mt-8 border-t border-gray-200 pt-8">
-                <x-dashboard-clients-chosen-cities :chosenCityNames="$chosenCityNames">
-                    </x-dashboard.clients.chosen-cities>
+                <x-dashboard.campaigns.chosen-clients :chosenClientNames="$chosenClientNames">
+                    </x-dashboard.campaigns.chosen-clients>
+                    <x-dashboard.error property="chosenCityNames"></x-dashboard.error>
                     <div class="mt-6">
                         <fieldset>
                             <legend class="text-base font-medium text-gray-900">
-                                Cities
+                                Clients
                             </legend>
                             <div class="min-h-full h-80 overflow-y-scroll">
-                                @foreach($cities as $city)
+                                @foreach($clients as $client)
                                 <div class="mt-4">
                                     <div class="relative flex items-start">
                                         <div class="flex items-center h-5">
-                                            <input type="checkbox" wire:model="checkedCities" value="{{ $city['id'] }}"
+                                            <input type="checkbox" wire:model="checkedClients" value="{{ $client['id'] }}"
                                                 class="form-checkbox h-4 w-4 text-red-600 transition duration-150 ease-in-out">
                                         </div>
                                         <div class="ml-3 text-sm leading-5">
                                             <label for="comments"
-                                                class="font-medium text-gray-700">{{ $city['name'] }}</label>
+                                                class="font-medium text-gray-700">{{ $client['name'] }}</label>
                                         </div>
                                     </div>
                                 </div>

@@ -126,3 +126,8 @@ test('it should have a new client page', function () {
     $this->get('backend/clients/create')
         ->assertOk();
 });
+
+test('it should have a campaign edit page', function () {
+    $this->get('backend/campaigns/1')
+        ->assertOk();
+});

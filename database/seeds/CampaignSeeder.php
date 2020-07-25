@@ -11,9 +11,6 @@ class CampaignSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Campaign::class, 10)->create()->each(function ($campaign) {
-            $cityIds = App\City::inRandomOrder()->limit(5)->get()->pluck('id');
-            $campaign->cities()->sync($cityIds);
-        });
+        factory(App\Campaign::class, 10)->create();
     }
 }

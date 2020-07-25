@@ -85,6 +85,11 @@ Route::prefix('backend')->group(function () {
         return view('backend.campaign-create');
     })->name('backend-campaign-create');
 
+    Route::get('campaigns/{id}', function ($campaignId) {
+
+        return view('backend.campaign-edit')->with(['campaignId' => $campaignId]);
+    })->where('campaignId', '[0-9]+')->name('backend-campaign-edit');
+
     Route::get('reports', function () {
 
         return view('backend.reports');
