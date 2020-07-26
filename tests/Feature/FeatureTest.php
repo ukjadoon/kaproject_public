@@ -91,6 +91,11 @@ test('It should have a backend dashboard page')
     ->get('backend/dashboard')
     ->assertOk();
 
+test('it should see the backend-dashboard component on the route', function () {
+    $this->get('backend/dashboard')
+        ->assertSeeLivewire('backend-dashboard-component');
+});
+
 /**
  * Client tests
  */

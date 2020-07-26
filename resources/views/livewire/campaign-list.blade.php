@@ -24,6 +24,8 @@
                                 </div>
                                 <div class="hidden md:block">
                                     <div>
+                                        <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
+                                        <a href="{{ route('campaign-landing', ['code' => $campaign['code']]) }}" target="_blank" class="hover:underline">Preview link</a></div>
                                         <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
                                             <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                             {{ Carbon\Carbon::parse($campaign['created_at'])->diffForHumans() }}
