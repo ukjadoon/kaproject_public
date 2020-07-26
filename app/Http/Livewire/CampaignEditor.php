@@ -21,6 +21,10 @@ class CampaignEditor extends Component
 
     public $chosenClientNames;
 
+    protected $casts = [
+        'checkedClients' => 'collection'
+    ];
+
     public function mount($campaignId)
     {
         $this->campaignId = $campaignId;
@@ -32,8 +36,8 @@ class CampaignEditor extends Component
         $this->campaignModel = Campaign::findOrFail($this->campaignId);
         $this->campaign = $this->campaignModel->toArray();
         $this->clients = Client::orderBy('name', 'ASC')->get()->toArray();
-        $this->checkedClients = $this->campaignModel->clients->pluck('id')->toArray();
-        $this->chosenClientNames = '';
+        $this->checkedClients = $this->campaignModel->clients->pluck('id')->transform(function ($value) { return (string) $value; });
+        $this->chosenClientNames = implode(', ', Client::whereIn('id', $this->checkedClients)->get()->sortBy('name')->pluck('name')->toArray());
     }
 
     public function updatedCampaign()
@@ -47,9 +51,15 @@ class CampaignEditor extends Component
         ]);
     }
 
-    public function updatedCheckedClients()
+    public function updated($name, $value)
     {
-        $this->chosenClientNames = implode(', ', Client::whereIn('id', $this->checkedClients)->get()->sortBy('name')->pluck('name')->toArray());
+        if ($name == 'checkedClients') {
+            $value = collect($value)->transform(function ($v) {
+
+                return (int) $v;
+            })->unique();
+            $this->chosenClientNames = implode(', ', Client::whereIn('id', $value)->get()->sortBy('name')->pluck('name')->toArray());
+        }
     }
 
     public function updateCampaign()

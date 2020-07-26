@@ -82,7 +82,7 @@
                             <legend class="text-base font-medium text-gray-900">
                                 Clients
                             </legend>
-                            <div class="min-h-full h-80 overflow-y-scroll">
+                            <div class="min-h-full h-80 overflow-y-scroll" wire:ignore>
                                 @foreach($clients as $client)
                                 <div class="mt-4">
                                     <div class="relative flex items-start">

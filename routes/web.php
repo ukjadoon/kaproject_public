@@ -25,8 +25,12 @@ Route::get('/welcome', function () {
 
 Route::get('/campaign/{code}', function ($code) {
     $campaign = app('App\Campaign')->where('code', $code)->firstOrFail();
+    $client = $campaign->clients()->inRandomOrder()->first();
+    $dangerFrom = 25000 - 7000;
+    $maxLimit = 30000;
+    $price = $client->cities->first()->price;
 
-    return $campaign;
+    return view('campaign-landing', compact('campaign', 'client', 'dangerFrom', 'maxLimit', 'price'));
 })->name('campaign-landing');
 
 Route::get('/backend', function () {

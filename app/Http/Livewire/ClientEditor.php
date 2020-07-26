@@ -57,11 +57,11 @@ class ClientEditor extends Component
 
     public function updatedCheckedCities()
     {
-        /*$this->checkedCities = collect($this->checkedCities)->transform(function ($value) {
+        $this->checkedCities = collect($this->checkedCities)->transform(function ($value) {
             
             return (int) $value;
-        })->unique()->toArray();*/
-        $this->chosenCityNames = implode(', ', City::whereIn('id', $this->checkedCities)->get()->sortBy('name')->pluck('name')->toArray());
+        })->unique();
+        //$this->chosenCityNames = implode(', ', City::whereIn('id', $this->checkedCities)->get()->sortBy('name')->pluck('name')->toArray());
     }
 
     public function updateClient()
