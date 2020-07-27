@@ -43,7 +43,7 @@
     </li>
     @empty
     <li><span class="text-2xl font-semibold">No Clients</span></li>
-    @endforeach
+    @endforelse
   </ul>
 </div>
 

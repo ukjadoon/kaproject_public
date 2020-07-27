@@ -41,7 +41,7 @@
             </li>
             @empty
             <li><span class="text-2xl font-semibold">No campaigns</span></li>
-            @endforeach
+            @endforelse
         </ul>
     </div>
 
