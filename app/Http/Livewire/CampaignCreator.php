@@ -28,7 +28,7 @@ class CampaignCreator extends Component
 
     public function initialize()
     {
-        $this->campaign = ['code' => Str::random(10)];
+        $this->campaign = ['code' => Str::random(10), 'city_id' => City::where('name', 'Stockholm')->first()->id];
         $this->clients = Client::orderBy('name', 'ASC')->get()->toArray();
         $this->checkedClients = [];
         $this->chosenClientNames = '';
@@ -44,6 +44,7 @@ class CampaignCreator extends Component
             'campaign.google_tag' => 'string|nullable',
             'campaign.description' => 'string|nullable',
             'campaign.city_id' => 'required',
+            'chosenClientNames' => 'required',
         ]);
     }
 

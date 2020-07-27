@@ -88,7 +88,7 @@
             <div class="mt-8 border-t border-gray-200 pt-8">
                 <x-dashboard.campaigns.chosen-clients :chosenClientNames="$chosenClientNames">
                     </x-dashboard.campaigns.chosen-clients>
-                    <x-dashboard.error property="chosenCityNames"></x-dashboard.error>
+                    <x-dashboard.error property="chosenClientNames"></x-dashboard.error>
                     <div class="mt-6">
                         <fieldset>
                             <legend class="text-base font-medium text-gray-900">

@@ -53,6 +53,7 @@ class CampaignEditor extends Component
             'campaign.google_tag' => 'string|nullable',
             'campaign.description' => 'string|nullable',
             'campaign.city_id' => 'required',
+            'chosenClientNames' => 'required',
         ]);
     }
 
