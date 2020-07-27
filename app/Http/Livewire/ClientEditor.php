@@ -71,6 +71,7 @@ class ClientEditor extends Component
             'client.email' => 'required|email',
             'client.homepage_url' => 'url|nullable',
             'client.about' => 'string|nullable',
+            'client.contact_number' => 'string|nullable',
             'logo' => 'image|max:1024|nullable',
         ]);
         $clientData = Arr::get($validatedData, 'client');
