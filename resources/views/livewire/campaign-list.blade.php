@@ -40,7 +40,11 @@
                 </a>
             </li>
             @empty
-            <li><span class="text-2xl font-semibold">No campaigns</span></li>
+            <li class="text-lg font-semibold text-gray-400 h-18 min-h-full">
+            <div class="flex justify-center items-center">
+                <span class="py-5">No Campaigns</span>
+            </div>
+            </li>
             @endforelse
         </ul>
     </div>
