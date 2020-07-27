@@ -1,7 +1,7 @@
 <div>
     <div class="bg-white shadow overflow-hidden sm:rounded-md">
   <ul>
-      @foreach($clients as $client)
+    @forelse($clients as $client)
     <li>
       <a href="{{ route('backend-client-edit', ['id' => $client['id']]) }}" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
         <div class="flex items-center px-4 py-4 sm:px-6">
@@ -41,6 +41,8 @@
         </div>
       </a>
     </li>
+    @empty
+    <li><span class="text-2xl font-semibold">No Clients</span></li>
     @endforeach
   </ul>
 </div>

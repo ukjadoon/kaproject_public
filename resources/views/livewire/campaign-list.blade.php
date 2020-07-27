@@ -1,7 +1,7 @@
 <div>
     <div class="bg-white shadow overflow-hidden sm:rounded-md">
         <ul>
-            @foreach($campaigns as $campaign)
+            @forelse($campaigns as $campaign)
             <li>
 
                 <a href="{{ route('backend-campaign-edit', ['campaignId' => $campaign['id']]) }}"
@@ -39,6 +39,8 @@
                     </div>
                 </a>
             </li>
+            @empty
+            <li><span class="text-2xl font-semibold">No campaigns</span></li>
             @endforeach
         </ul>
     </div>
