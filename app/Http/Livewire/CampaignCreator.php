@@ -43,6 +43,7 @@ class CampaignCreator extends Component
             'campaign.facebook_pixel' => 'string|nullable',
             'campaign.google_tag' => 'string|nullable',
             'campaign.description' => 'string|nullable',
+            'campaign.city_id' => 'required',
         ]);
     }
 
@@ -64,6 +65,7 @@ class CampaignCreator extends Component
             'campaign.facebook_pixel' => 'string|nullable',
             'campaign.google_tag' => 'string|nullable',
             'campaign.description' => 'string|nullable',
+            'campaign.city_id' => 'required',
             'chosenClientNames' => 'required',
         ]);
         $campaignData = Arr::get($validatedData, 'campaign');
