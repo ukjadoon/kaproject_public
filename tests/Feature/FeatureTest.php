@@ -4,7 +4,14 @@ use function Pest\Livewire\livewire;
 use App\Campaign;
 use App\City;
 use App\Client;
+use App\User;
 use Illuminate\Support\Facades\Artisan;
+
+beforeEach(function () {
+    if ($user = User::first()) {
+        $this->actingAs($user);
+    }
+});
 
 test('Initialize and seed', function () {
     Artisan::call('migrate:fresh --seed');

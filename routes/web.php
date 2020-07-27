@@ -26,9 +26,9 @@ Route::get('/welcome', function () {
 Route::get('/campaign/{code}', function ($code) {
     $campaign = app('App\Campaign')->where('code', $code)->firstOrFail();
     $client = $campaign->clients()->inRandomOrder()->first();
-    $dangerFrom = 25000 - 7000;
-    $maxLimit = 30000;
-    $price = $client->cities->first()->price;
+    $price = $campaign->city->price;
+    $dangerFrom = $price - 7000;
+    $maxLimit = $price + 5000;
 
     return view('campaign-landing', compact('campaign', 'client', 'dangerFrom', 'maxLimit', 'price'));
 })->name('campaign-landing');
@@ -38,17 +38,21 @@ Route::get('/backend', function () {
     return redirect('/backend/login');
 });
 
-Route::prefix('backend')->group(function () {
-    Route::get('login', function () {
-        return view('backend.login');
-    })->name('backend-login');
-    Route::post('login', function () {
-        $credentials = request()->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-    
-            return redirect()->intended('/backend/dashboard');
-        }
-    })->name('backend-login');
+Route::get('backend/login', function () {
+
+    return view('backend.login');
+})->name('login');
+
+Route::post('backend/login', function () {
+    $credentials = request()->only('email', 'password');
+    $remember = request()->has('remember_me') ? true : false;
+    if (Auth::attempt($credentials, $remember)) {
+
+        return redirect()->route('backend-dashboard');
+    }
+})->name('backend-login');
+
+Route::prefix('backend')->middleware('auth')->group(function () {
     Route::get('logout', function () {
         Auth::logout();
     

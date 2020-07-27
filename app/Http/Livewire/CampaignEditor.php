@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Campaign;
+use App\City;
 use App\Client;
 use Livewire\Component;
 use Illuminate\Support\Arr;
@@ -21,6 +22,8 @@ class CampaignEditor extends Component
 
     public $chosenClientNames;
 
+    public $cities;
+
     protected $casts = [
         'checkedClients' => 'collection'
     ];
@@ -38,6 +41,7 @@ class CampaignEditor extends Component
         $this->clients = Client::orderBy('name', 'ASC')->get()->toArray();
         $this->checkedClients = $this->campaignModel->clients->pluck('id')->transform(function ($value) { return (string) $value; });
         $this->chosenClientNames = implode(', ', Client::whereIn('id', $this->checkedClients)->get()->sortBy('name')->pluck('name')->toArray());
+        $this->cities = City::all()->toArray();
     }
 
     public function updatedCampaign()
@@ -48,6 +52,7 @@ class CampaignEditor extends Component
             'campaign.facebook_pixel' => 'string|nullable',
             'campaign.google_tag' => 'string|nullable',
             'campaign.description' => 'string|nullable',
+            'campaign.city_id' => 'required',
         ]);
     }
 
@@ -70,6 +75,7 @@ class CampaignEditor extends Component
             'campaign.facebook_pixel' => 'string|nullable',
             'campaign.google_tag' => 'string|nullable',
             'campaign.description' => 'string|nullable',
+            'campaign.city_id' => 'required',
             'chosenClientNames' => 'required',
         ]);
         $campaignData = Arr::get($validatedData, 'campaign');

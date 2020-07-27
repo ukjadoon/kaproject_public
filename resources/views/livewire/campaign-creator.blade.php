@@ -71,35 +71,47 @@
                         </div>
                         <p class="mt-2 text-sm text-gray-500">Write a few sentences about the campaign.</p>
                     </div>
+                    <div class="sm:col-span-3">
+                        <div>
+                            <label for="city"
+                                class="block text-sm leading-5 font-medium text-gray-700">City</label>
+                            <select id="city"
+                                class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model="campaign.city_id">
+                                @foreach($cities as $city)
+                                <option {{ $city['name'] == 'Stockholm' ? 'selected' : '' }} value="{{ $city['id'] }}">{{ $city['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="mt-8 border-t border-gray-200 pt-8">
                 <x-dashboard.campaigns.chosen-clients :chosenClientNames="$chosenClientNames">
-                    </x-dashboard.campaigns.chosen-clients>
-                    <x-dashboard.error property="chosenCityNames"></x-dashboard.error>
-                    <div class="mt-6">
-                        <fieldset>
-                            <legend class="text-base font-medium text-gray-900">
-                                Clients
-                            </legend>
-                            <div class="min-h-full h-80 overflow-y-scroll">
-                                @foreach($clients as $client)
-                                <div class="mt-4">
-                                    <div class="relative flex items-start">
-                                        <div class="flex items-center h-5">
-                                            <input type="checkbox" wire:model="checkedClients" value="{{ $client['id'] }}"
-                                                class="form-checkbox h-4 w-4 text-red-600 transition duration-150 ease-in-out">
-                                        </div>
-                                        <div class="ml-3 text-sm leading-5">
-                                            <label for="comments"
-                                                class="font-medium text-gray-700">{{ $client['name'] }}</label>
-                                        </div>
+                </x-dashboard.campaigns.chosen-clients>
+                <x-dashboard.error property="chosenCityNames"></x-dashboard.error>
+                <div class="mt-6">
+                    <fieldset>
+                        <legend class="text-base font-medium text-gray-900">
+                            Clients
+                        </legend>
+                        <div class="min-h-full h-80 overflow-y-scroll">
+                            @foreach($clients as $client)
+                            <div class="mt-4">
+                                <div class="relative flex items-start">
+                                    <div class="flex items-center h-5">
+                                        <input type="checkbox" wire:model="checkedClients" value="{{ $client['id'] }}"
+                                            class="form-checkbox h-4 w-4 text-red-600 transition duration-150 ease-in-out">
+                                    </div>
+                                    <div class="ml-3 text-sm leading-5">
+                                        <label for="comments"
+                                            class="font-medium text-gray-700">{{ $client['name'] }}</label>
                                     </div>
                                 </div>
-                                @endforeach
                             </div>
-                        </fieldset>
-                    </div>
+                            @endforeach
+                        </div>
+                    </fieldset>
+                </div>
             </div>
         </div>
         <div class="mt-8 border-t border-gray-200 pt-5">

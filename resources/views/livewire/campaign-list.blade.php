@@ -13,13 +13,8 @@
                                     <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
                                         {{ $campaign['name'] }}</div>
                                     <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-                                            fill="currentColor">
-                                            <path
-                                                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                        </svg>
-                                        <span class="truncate">{{ $this->getClientsForCampaign($campaign['id']) }}</span>
+                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                        <span class="truncate">{{ $this->getCityForCampaign($campaign['id']) }}</span>
                                     </div>
                                 </div>
                                 <div class="hidden md:block">

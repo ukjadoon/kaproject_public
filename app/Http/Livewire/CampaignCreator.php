@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Campaign;
+use App\City;
 use App\Client;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -18,6 +19,8 @@ class CampaignCreator extends Component
 
     public $chosenClientNames;
 
+    public $cities;
+
     public function mount()
     {
         $this->initialize();
@@ -29,6 +32,7 @@ class CampaignCreator extends Component
         $this->clients = Client::orderBy('name', 'ASC')->get()->toArray();
         $this->checkedClients = [];
         $this->chosenClientNames = '';
+        $this->cities = City::all()->toArray();
     }
 
     public function updatedCampaign()

@@ -21,11 +21,12 @@ class UserSeeder extends Seeder
             throw new Exception('The number of emails does not match the number of passwords');
         }
         foreach($emails as $key => $email) {
-            factory(User::class)->create([
+            $user = factory(User::class)->make([
                 'name' => $names[$key],
                 'email' => $email,
                 'password' => Hash::make($passwords[$key]),
             ]);
+            $user->save();
         }
     }
 }

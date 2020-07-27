@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campaign extends Model
 {
-    protected $fillable = ['code', 'name', 'description', 'google_tag', 'facebook_pixel'];
+    protected $fillable = ['code', 'name', 'description', 'google_tag', 'facebook_pixel', 'city_id'];
 
-    public function cities()
+    public function city()
     {
-        return $this->belongsToMany(City::class, 'campaign_city')->withTimestamps();
+        return $this->belongsTo(City::class, 'city_id');
     }
 
     public function clients()

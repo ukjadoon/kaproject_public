@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(CitySeeder::class);
-        $this->call(CampaignSeeder::class);
-        $this->call(ClientSeeder::class);
+        if (env('APP_ENV') == 'testing') {
+            $this->call(CampaignSeeder::class);
+            $this->call(ClientSeeder::class);
+        }
     }
 }

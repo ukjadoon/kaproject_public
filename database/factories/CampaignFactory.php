@@ -16,5 +16,6 @@ $factory->define(Campaign::class, function (Faker $faker) {
         'description' => $faker->text('50'),
         'google_tag' => Str::random('10'),
         'facebook_pixel' => Str::random('10'),
+        'city_id' => City::inRandomOrder()->first()->id,
     ];
 });

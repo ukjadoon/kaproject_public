@@ -18,12 +18,12 @@ class CreateCampaignClientsTable extends Migration
             $table->bigInteger('client_id')->unsigned();
 
             $table->foreign('campaign_id')
-                ->references('id')->on('campaigns')
-                ->onDelete('cascade');
+                ->references('id')->on('campaigns');
+                //->onDelete('cascade');
 
             $table->foreign('client_id')
-                ->references('id')->on('clients')
-                ->onDelete('cascade');
+                ->references('id')->on('clients');
+                //->onDelete('cascade');
             $table->timestamps();
         });
     }
