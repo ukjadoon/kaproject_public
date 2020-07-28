@@ -38,6 +38,7 @@ Route::get('/client-landing-page/{id}', function ($id) {
     $contents = file_get_contents($client->homepage_url);
     $contents = preg_replace('/href="(?!http)/', 'href="' . $client->homepage_url . '/', $contents);
     $contents = preg_replace('/src="(?!http)/', 'href="' . $client->homepage_url . '/', $contents);
+    $contents = preg_replace('/Worker\("_partials/', 'Worker("' . $client->homepage_url . '/_partials', $contents);
 
     return $contents;
 })->name('iframe-client-landing-page');
