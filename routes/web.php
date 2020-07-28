@@ -40,7 +40,7 @@ Route::get('/client-landing-page/{id}', function ($id) {
     $contents = preg_replace('/src="(?!http)/', 'href="' . $client->homepage_url . '/', $contents);
 
     return $contents;
-})->route('iframe-client-landing-page');
+})->name('iframe-client-landing-page');
 
 Route::get('/backend', function () {
 
