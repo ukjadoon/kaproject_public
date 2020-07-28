@@ -58,7 +58,7 @@
 
 </div>
 <div class="mt-4 flex justify-center">
-    <iframe src="{{ $client->homepage_url }}" frameborder="0" style="display: block; border: none; width: 100%; height: 100vh;"></iframe>
+    <iframe id="iframe" src="{{ route('iframe-client-landing-page', ['id' => $client->id]) }}" scrolling="no" onload="adjustIframe()" frameborder="0" allowtransparency="true" style="display: block; border: none; width: 100%; overflow:hidden;"></iframe>
 </div>
 @endsection
 <script>
@@ -84,5 +84,10 @@
                 }
             }
         }
+    }
+
+    function adjustIframe() {
+        var iframe = document.getElementById('iframe');
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
     }
 </script>

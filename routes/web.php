@@ -33,6 +33,15 @@ Route::get('/campaign/{code}', function ($code) {
     return view('campaign-landing', compact('campaign', 'client', 'dangerFrom', 'maxLimit', 'price'));
 })->name('campaign-landing');
 
+Route::get('/client-landing-page/{id}', function ($id) {
+    $client = app('App\Client')->findOrFail($id);
+    $contents = file_get_contents($client->homepage_url);
+    $contents = preg_replace('/href="(?!http)/', 'href="' . $client->homepage_url . '/', $contents);
+    $contents = preg_replace('/src="(?!http)/', 'href="' . $client->homepage_url . '/', $contents);
+
+    return $contents;
+})->route('iframe-client-landing-page');
+
 Route::get('/backend', function () {
 
     return redirect('/backend/login');
