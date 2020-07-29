@@ -58,7 +58,7 @@
 
 </div>
 <div class="mt-4 flex justify-center">
-    <iframe id="iframe" src="{{ route('iframe-client-landing-page', ['id' => $client->id]) }}" scrolling="no" onload="adjustIframe()" frameborder="0" allowtransparency="true" style="display: block; border: none; width: 100%; overflow:hidden;" target="_self"></iframe>
+    <iframe id="iframe" src="{{ route('iframe-client-landing-page', ['id' => $client->id]) }}" scrolling="no" onload="adjustIframe()" frameborder="0" allowtransparency="true" style="display: block; border: none; width: 100%; overflow:hidden;" target="_parent"></iframe>
 </div>
 @endsection
 <script>
