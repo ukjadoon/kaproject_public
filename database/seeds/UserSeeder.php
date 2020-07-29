@@ -27,8 +27,8 @@ class UserSeeder extends Seeder
                     'email' => $email,
                     'password' => Hash::make($passwords[$key]),
                 ]);
+                $user->save();
             }
-            $user->save();
         }
     }
 }
