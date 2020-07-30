@@ -46,7 +46,7 @@ class ClientEditor extends Component
         $this->clientModel = Client::findOrFail($this->clientId);
         $this->client = $this->clientModel->toArray();
         $this->municipalities = Municipality::all();
-        $this->checkedMunicipalities = $this->clientModel->municipalities->pluck('id');
+        $this->checkedMunicipalities = $this->clientModel->municipalities->pluck('id')->transform(function ($value) { return (string) $value; });
         $this->chosenMunicipalityNames = implode(', ', $this->clientModel->municipalities->sortBy('name')->pluck('name')->toArray());
     }
 
@@ -57,10 +57,7 @@ class ClientEditor extends Component
 
     public function updatedCheckedMunicipalities()
     {
-        $this->checkedMunicipalities = collect($this->checkedMunicipalities)->transform(function ($value) {
-            
-            return (int) $value;
-        })->unique();
+        $this->chosenMunicipalityNames = implode(', ', Municipality::whereIn('id', $this->checkedMunicipalities)->get()->sortBy('name')->pluck('name')->toArray());
     }
 
     public function updateClient()
@@ -72,6 +69,7 @@ class ClientEditor extends Component
             'client.about' => 'string|nullable',
             'client.contact_number' => 'string|nullable',
             'logo' => 'image|max:1024|nullable',
+            'chosenMunicipalityNames' => 'required',
         ]);
         $clientData = Arr::get($validatedData, 'client');
         if ($this->logo) {

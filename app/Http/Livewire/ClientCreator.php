@@ -40,10 +40,6 @@ class ClientCreator extends Component
 
     public function updatedCheckedMunicipalities()
     {
-        if (empty($this->checkedMunicipalities)) {
-
-            return;
-        }
         $this->chosenMunicipalityNames = implode(', ', Municipality::whereIn('id', $this->checkedMunicipalities)->get()->sortBy('name')->pluck('name')->toArray());
     }
 

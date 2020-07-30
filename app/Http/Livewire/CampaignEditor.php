@@ -49,7 +49,10 @@ class CampaignEditor extends Component
         $this->checkedClients = $this->campaignModel->clients->pluck('id')->transform(function ($value) { return (string) $value; });
         $this->chosenClientNames = implode(', ', Client::whereIn('id', $this->checkedClients)->get()->sortBy('name')->pluck('name')->toArray());
         $this->municipalities = Municipality::all();
-        $this->checkedMunicipalities = $this->campaignModel->municipalities->pluck('id');
+        $this->checkedMunicipalities = $this->campaignModel->municipalities->pluck('id')->transform(function ($value) {
+
+            return (string) $value;
+        });
         $this->chosenMunicipalityNames = implode(', ', $this->campaignModel->municipalities->sortBy('name')->pluck('name')->toArray());
     }
 
@@ -68,17 +71,10 @@ class CampaignEditor extends Component
     public function updated($name, $value)
     {
         if ($name == 'checkedClients') {
-            $value = collect($value)->transform(function ($v) {
-
-                return (int) $v;
-            })->unique();
             $this->chosenClientNames = implode(', ', Client::whereIn('id', $value)->get()->sortBy('name')->pluck('name')->toArray());
         }
         if ($name == 'checkedMunicipalities') {
-            $this->checkedMunicipalities = collect($this->checkedMunicipalities)->transform(function ($value) {
-                
-                return (int) $value;
-            })->unique();
+            $this->chosenMunicipalityNames = implode(', ', Municipality::whereIn('id', $value)->get()->sortBy('name')->pluck('name')->toArray());
         }
     }
 
