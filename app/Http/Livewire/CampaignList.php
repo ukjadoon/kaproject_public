@@ -22,10 +22,15 @@ class CampaignList extends Component
     {
         $campaign = $this->campaigns->where('id', $id)->first();
 
-        return $campaign->municipalies ? $campaign->municipalities()->first()->name : '';
+        return $campaign->municipalities ? $this->getMunicipalityNamesForCampaign($campaign) : '';
     }
     public function render()
     {
         return view('livewire.campaign-list');
+    }
+
+    public function getMunicipalityNamesForCampaign(Campaign $campaign)
+    {
+        return implode(', ', $campaign->municipalities->pluck('name')->toArray());
     }
 }
