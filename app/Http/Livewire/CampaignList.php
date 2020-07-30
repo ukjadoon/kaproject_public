@@ -22,7 +22,7 @@ class CampaignList extends Component
     {
         $campaign = $this->campaigns->where('id', $id)->first();
 
-        return $campaign->municipalities()->first()->name;
+        return $campaign->municipalies ? $campaign->municipalities()->first()->name : '';
     }
     public function render()
     {
