@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Campaign;
 use App\City;
 use App\Client;
+use App\Municipality;
 use Livewire\Component;
 use Illuminate\Support\Arr;
 
@@ -22,10 +23,16 @@ class CampaignEditor extends Component
 
     public $chosenClientNames;
 
-    public $cities;
+    public $municipalities;
+
+    public $checkedMunicipalities;
+
+    public $chosenMunicipalityNames;
 
     protected $casts = [
-        'checkedClients' => 'collection'
+        'checkedClients' => 'collection',
+        'municipalities' => 'collection',
+        'checkedMunicipalities' => 'collection',
     ];
 
     public function mount($campaignId)
@@ -41,7 +48,9 @@ class CampaignEditor extends Component
         $this->clients = Client::orderBy('name', 'ASC')->get()->toArray();
         $this->checkedClients = $this->campaignModel->clients->pluck('id')->transform(function ($value) { return (string) $value; });
         $this->chosenClientNames = implode(', ', Client::whereIn('id', $this->checkedClients)->get()->sortBy('name')->pluck('name')->toArray());
-        $this->cities = City::all()->toArray();
+        $this->municipalities = Municipality::all();
+        $this->checkedMunicipalities = $this->campaignModel->municipalities->pluck('id');
+        $this->chosenMunicipalityNames = implode(', ', $this->campaignModel->municipalities->sortBy('name')->pluck('name')->toArray());
     }
 
     public function updatedCampaign()
@@ -52,7 +61,6 @@ class CampaignEditor extends Component
             'campaign.facebook_pixel' => 'string|nullable',
             'campaign.google_tag' => 'string|nullable',
             'campaign.description' => 'string|nullable',
-            'campaign.city_id' => 'required',
             'chosenClientNames' => 'required',
         ]);
     }
@@ -66,6 +74,12 @@ class CampaignEditor extends Component
             })->unique();
             $this->chosenClientNames = implode(', ', Client::whereIn('id', $value)->get()->sortBy('name')->pluck('name')->toArray());
         }
+        if ($name == 'checkedMunicipalities') {
+            $this->checkedMunicipalities = collect($this->checkedMunicipalities)->transform(function ($value) {
+                
+                return (int) $value;
+            })->unique();
+        }
     }
 
     public function updateCampaign()
@@ -76,13 +90,14 @@ class CampaignEditor extends Component
             'campaign.facebook_pixel' => 'string|nullable',
             'campaign.google_tag' => 'string|nullable',
             'campaign.description' => 'string|nullable',
-            'campaign.city_id' => 'required',
             'chosenClientNames' => 'required',
+            'chosenMunicipalityNames' => 'required',
         ]);
         $campaignData = Arr::get($validatedData, 'campaign');
         $campaign = Campaign::findOrFail($this->campaignId);
         $campaign->update($campaignData);
         $campaign->clients()->sync($this->checkedClients);
+        $campaign->municipalities()->sync($this->checkedMunicipalities);
         $this->emit('success', 'Campaign updated successfully');
     }
 

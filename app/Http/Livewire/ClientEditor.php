@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Client;
-use App\City;
+use App\Municipality;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
@@ -20,19 +20,19 @@ class ClientEditor extends Component
 
     public $client;
 
-    public $cities;
+    public $municipalities;
 
-    public $checkedCities;
+    public $checkedMunicipalities;
 
-    public $chosenCityNames;
+    public $chosenMunicipalityNames;
 
     public $logo;
 
     public $photo;
 
     protected $casts = [
-        'cities' => 'collection',
-        'checkedCities' => 'collection',
+        'municipalities' => 'collection',
+        'checkedMunicipalities' => 'collection',
     ];
 
     public function mount($clientId)
@@ -45,9 +45,9 @@ class ClientEditor extends Component
     {
         $this->clientModel = Client::findOrFail($this->clientId);
         $this->client = $this->clientModel->toArray();
-        $this->cities = City::all();
-        $this->checkedCities = $this->clientModel->cities->pluck('id');
-        $this->chosenCityNames = implode(', ', $this->clientModel->cities->sortBy('name')->pluck('name')->toArray());
+        $this->municipalities = Municipality::all();
+        $this->checkedMunicipalities = $this->clientModel->municipalities->pluck('id');
+        $this->chosenMunicipalityNames = implode(', ', $this->clientModel->municipalities->sortBy('name')->pluck('name')->toArray());
     }
 
     public function render()
@@ -55,13 +55,12 @@ class ClientEditor extends Component
         return view('livewire.client-editor');
     }
 
-    public function updatedCheckedCities()
+    public function updatedCheckedMunicipalities()
     {
-        $this->checkedCities = collect($this->checkedCities)->transform(function ($value) {
+        $this->checkedMunicipalities = collect($this->checkedMunicipalities)->transform(function ($value) {
             
             return (int) $value;
         })->unique();
-        //$this->chosenCityNames = implode(', ', City::whereIn('id', $this->checkedCities)->get()->sortBy('name')->pluck('name')->toArray());
     }
 
     public function updateClient()
@@ -90,6 +89,7 @@ class ClientEditor extends Component
             $this->clientModel->update();
         }
         $this->clientModel->update($clientData);
+        $this->clientModel->municipalities()->sync($this->checkedMunicipalities);
         $this->emit('success', 'The client was updated successfully');
     }
 

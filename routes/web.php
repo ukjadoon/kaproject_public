@@ -26,21 +26,12 @@ Route::get('/welcome', function () {
 Route::get('/campaign/{code}', function ($code) {
     $campaign = app('App\Campaign')->where('code', $code)->firstOrFail();
     $client = $campaign->clients()->inRandomOrder()->first();
-    $price = $campaign->city->price;
+    $price = $campaign->municipalities()->inRandomOrder()->first()->price;
     $dangerFrom = $price - 7000;
     $maxLimit = $price + 5000;
 
     return view('campaign-landing', compact('campaign', 'client', 'dangerFrom', 'maxLimit', 'price'));
 })->name('campaign-landing');
-
-Route::get('/client-landing-page/{id}', function ($id) {
-    $client = app('App\Client')->findOrFail($id);
-    $contents = file_get_contents($client->homepage_url);
-    $contents = preg_replace('/href="(?!http)/', 'href="' . $client->homepage_url . '/', $contents);
-    $contents = preg_replace('/src="(?!http)/', 'href="' . $client->homepage_url . '/', $contents);
-
-    return $contents;
-})->name('iframe-client-landing-page');
 
 Route::get('/backend', function () {
 
@@ -72,10 +63,10 @@ Route::prefix('backend')->middleware('auth')->group(function () {
         return view('backend.dashboard');
     })->name('backend-dashboard');
 
-    Route::get('cities', function () {
+    Route::get('municipalities', function () {
 
-        return view('backend.cities');
-    })->name('backend-cities');
+        return view('backend.municipalities');
+    })->name('backend-municipalities');
 
     Route::get('clients', function () {
 

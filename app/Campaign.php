@@ -8,9 +8,9 @@ class Campaign extends Model
 {
     protected $fillable = ['code', 'name', 'description', 'google_tag', 'facebook_pixel', 'city_id'];
 
-    public function city()
+    public function municipalities()
     {
-        return $this->belongsTo(City::class, 'city_id');
+        return $this->belongsToMany(Municipality::class, 'campaign_municipality')->withTimestamps();
     }
 
     public function clients()

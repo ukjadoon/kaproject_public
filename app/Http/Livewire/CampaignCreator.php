@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Campaign;
-use App\City;
 use App\Client;
+use App\Municipality;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
@@ -19,7 +19,11 @@ class CampaignCreator extends Component
 
     public $chosenClientNames;
 
-    public $cities;
+    public $checkedMunicipalities;
+
+    public $chosenMunicipalityNames;
+
+    public $municipalities;
 
     public function mount()
     {
@@ -28,11 +32,13 @@ class CampaignCreator extends Component
 
     public function initialize()
     {
-        $this->campaign = ['code' => Str::random(10), 'city_id' => City::where('name', 'Stockholm')->first()->id];
+        $this->campaign = ['code' => Str::random(10)];
         $this->clients = Client::orderBy('name', 'ASC')->get()->toArray();
         $this->checkedClients = [];
         $this->chosenClientNames = '';
-        $this->cities = City::all()->toArray();
+        $this->checkedMunicipalities = [];
+        $this->chosenMunicipalityNames = '';
+        $this->municipalities = Municipality::all()->toArray();
     }
 
     public function updatedCampaign()
@@ -43,14 +49,19 @@ class CampaignCreator extends Component
             'campaign.facebook_pixel' => 'string|nullable',
             'campaign.google_tag' => 'string|nullable',
             'campaign.description' => 'string|nullable',
-            'campaign.city_id' => 'required',
             'chosenClientNames' => 'required',
+            'chosenMunicipalityNames' => 'required',
         ]);
     }
 
     public function updatedCheckedClients()
     {
         $this->chosenClientNames = implode(', ', Client::whereIn('id', $this->checkedClients)->get()->sortBy('name')->pluck('name')->toArray());
+    }
+
+    public function updatedCheckedMunicipalities()
+    {
+        $this->chosenMunicipalityNames = implode(', ', Municipality::whereIn('id', $this->checkedMunicipalities)->get()->sortBy('name')->pluck('name')->toArray());
     }
 
     public function render()
@@ -66,13 +77,14 @@ class CampaignCreator extends Component
             'campaign.facebook_pixel' => 'string|nullable',
             'campaign.google_tag' => 'string|nullable',
             'campaign.description' => 'string|nullable',
-            'campaign.city_id' => 'required',
             'chosenClientNames' => 'required',
+            'chosenMunicipalityNames' => 'required',
         ]);
         $campaignData = Arr::get($validatedData, 'campaign');
         $campaign = Campaign::create($campaignData);
         $campaign->clients()->sync($this->checkedClients);
-        $this->emit('back', route('backend-campaigns'));
+        $campaign->municipalities()->sync($this->checkedMunicipalities);
         $this->emit('success', 'Campaign created successfully');
+        $this->emit('back', route('backend-campaigns'));
     }
 }

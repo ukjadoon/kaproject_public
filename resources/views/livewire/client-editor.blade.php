@@ -83,30 +83,7 @@
         <x-dashboard-clients-logo :logo="$logo" :client="$client"></x-dashboard.clients.logo>
       </div>
     </div>
-    <div class="mt-8 border-t border-gray-200 pt-8">
-      <x-dashboard-clients-chosen-cities :chosenCityNames="$chosenCityNames"></x-dashboard.clients.chosen-cities>
-      <div class="mt-6">
-        <fieldset>
-          <legend class="text-base font-medium text-gray-900">
-            Cities
-          </legend>
-          <div class="min-h-full h-80 overflow-y-scroll">
-            @foreach($cities as $city)
-              <div class="mt-4">
-                <div class="relative flex items-start">
-                  <div class="flex items-center h-5">
-                    <input type="checkbox" wire:model="checkedCities" value="{{ $city['id'] }}" class="form-checkbox h-4 w-4 text-red-600 transition duration-150 ease-in-out">
-                  </div>
-                  <div class="ml-3 text-sm leading-5">
-                    <label for="comments" class="font-medium text-gray-700">{{ $city['name'] }}</label>
-                  </div>
-                </div>
-              </div>
-            @endforeach
-        </div>
-        </fieldset>
-      </div>
-    </div>
+    <x-dashboard.choose-municipalities :municipalities="$municipalities" :chosenMunicipalityNames="$chosenMunicipalityNames" :checkedMunicipalities="$checkedMunicipalities"></x-dashboard.choose-municipalities>
   </div>
   <div class="mt-8 border-t border-gray-200 pt-5">
     <div class="flex justify-end">

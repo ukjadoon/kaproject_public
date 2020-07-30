@@ -64,16 +64,16 @@ test('it should see the campaign-creator Livewire component on the campaign crea
 });
 
 /**
- * City tests
+ * Municipality tests
  */
-test('The city prices should be an integer', function () {
-    $city = app('App\City')::first();
-    assertIsInt($city->price);
+test('The municipality prices should be an integer', function () {
+    $municipality = app('App\Municipality')::first();
+    assertIsInt($municipality->price);
 });
 
 test('it should have a cities backend page')
-    ->get('/backend/cities')
-    ->assertSee('Cities');
+    ->get('/backend/municipalities')
+    ->assertSee('Municipalities');
 
 test('it should have a campaigns backend page')
     ->get('/backend/campaigns')
@@ -83,9 +83,9 @@ test('it should have a reports backend page')
     ->get('/backend/reports')
     ->assertSee('Reports');
 
-test('it should see the city editor livewire component on the cities backend endpoint')
-    ->get('/backend/cities')
-    ->assertSeeLivewire('city-editor');
+test('it should see the municipality editor livewire component on the cities backend endpoint')
+    ->get('/backend/municipalities')
+    ->assertSeeLivewire('municipality-editor');
 
 /**
  * Backend tests

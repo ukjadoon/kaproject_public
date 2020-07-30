@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\City;
 use App\Client;
+use App\Municipality;
 use Livewire\Component;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -15,14 +15,14 @@ class ClientCreator extends Component
     use WithFileUploads;
 
     public $client;
-    public $cities;
-    public $checkedCities;
-    public $chosenCityNames;
+    public $municipalities;
+    public $checkedMunicipalities;
+    public $chosenMunicipalityNames;
     public $logo;
 
     protected $casts = [
-        'cities' => 'collection',
-        'checkedCities' => 'collection',
+        'municipalities' => 'collection',
+        'checkedMunicipalities' => 'collection',
     ];
 
     public function mount()
@@ -33,18 +33,18 @@ class ClientCreator extends Component
     public function initialize()
     {
         $this->client = [];
-        $this->cities = City::all();
-        $this->checkedCities = collect([]);
-        $this->chosenCityNames = [];
+        $this->municipalities = Municipality::all();
+        $this->checkedMunicipalities = collect([]);
+        $this->chosenMunicipalityNames = [];
     }
 
-    public function updatedCheckedCities()
+    public function updatedCheckedMunicipalities()
     {
-        if (empty($this->checkedCities)) {
+        if (empty($this->checkedMunicipalities)) {
 
             return;
         }
-        $this->chosenCityNames = implode(', ', City::whereIn('id', $this->checkedCities)->get()->sortBy('name')->pluck('name')->toArray());
+        $this->chosenMunicipalityNames = implode(', ', Municipality::whereIn('id', $this->checkedMunicipalities)->get()->sortBy('name')->pluck('name')->toArray());
     }
 
     public function createClient()
@@ -56,6 +56,7 @@ class ClientCreator extends Component
             'client.about' => 'string|nullable',
             'client.contact_number' => 'string|nullable',
             'logo' => 'image|max:1024|nullable',
+            'chosenMunicipalityNames' => 'required',
         ]);
         $clientData = Arr::get($validatedData, 'client');
         $client = new Client;
@@ -66,10 +67,11 @@ class ClientCreator extends Component
             $client->logo = $path;
             $client->update();
         }
-        if ($this->checkedCities) {
-            $client->cities()->sync($this->checkedCities);
+        if ($this->checkedMunicipalities) {
+            $client->municipalities()->sync($this->checkedMunicipalities);
         }
         $this->emit('success', 'The model was created successfully');
+        $this->emit('back', route('backend-clients'));
     }
 
     protected function saveImage($clientId)

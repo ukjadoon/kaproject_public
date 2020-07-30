@@ -12,8 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserSeeder::class);
-        $this->call(CitySeeder::class);
-        if (env('APP_ENV') == 'testing') {
+        $this->call(MunicipalitySeeder::class);
+        if (env('APP_ENV') == 'testing' || env('APP_ENV') == 'local') {
             $this->call(CampaignSeeder::class);
             $this->call(ClientSeeder::class);
         }

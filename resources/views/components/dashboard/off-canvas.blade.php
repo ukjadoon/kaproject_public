@@ -56,8 +56,8 @@
                           </svg>
                           Dashboard
                       </a>
-                      <a href="{{ route('backend-cities') }}"
-                          class="group flex items-center px-2 py-2 text-base leading-6 font-medium {{ request()->routeIs('backend-cities') ? 'text-gray-900 focus:bg-gray-200 bg-gray-100' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:text-gray-900 focus:bg-gray-100' }} rounded-md focus:outline-none transition ease-in-out duration-150">
+                      <a href="{{ route('backend-municipalities') }}"
+                          class="group flex items-center px-2 py-2 text-base leading-6 font-medium {{ request()->routeIs('backend-municipalities') ? 'text-gray-900 focus:bg-gray-200 bg-gray-100' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:text-gray-900 focus:bg-gray-100' }} rounded-md focus:outline-none transition ease-in-out duration-150">
                           <svg class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500 transition ease-in-out duration-150"
                               fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               viewBox="0 0 24 24" stroke="currentColor">
@@ -67,7 +67,7 @@
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                           </svg>
-                          Cities
+                          Municipalities
                       </a>
                       <a href="{{ route('backend-clients') }}"
                           class="group flex items-center px-2 py-2 text-base leading-6 font-medium {{ request()->routeIs('backend-clients') || request()->routeIs('backend-client-create') || request()->routeIs('backend-client-edit') ? 'text-gray-900 focus:bg-gray-200 bg-gray-100' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:text-gray-900 focus:bg-gray-100' }} rounded-md focus:outline-none transition ease-in-out duration-150">

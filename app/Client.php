@@ -13,9 +13,9 @@ class Client extends Model
         return $this->belongsToMany(Campaign::class, 'campaign_client')->withTimestamps();
     }
 
-    public function cities()
+    public function municipalities()
     {
-        return $this->belongsToMany(City::class, 'city_client')->withTimestamps();
+        return $this->belongsToMany(Municipality::class, 'client_municipality')->withTimestamps();
     }
 
     public function logo()

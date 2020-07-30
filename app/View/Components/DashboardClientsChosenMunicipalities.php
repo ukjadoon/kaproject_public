@@ -4,17 +4,17 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class DashboardClientsChosenCities extends Component
+class DashboardClientsChosenMunicipalities extends Component
 {
-    public $chosenCityNames;
+    public $chosenMunicipalityNames;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($chosenCityNames)
+    public function __construct($chosenMunicipalityNames)
     {
-        $this->chosenCityNames = $chosenCityNames;
+        $this->chosenMunicipalityNames = $chosenMunicipalityNames;
     }
 
     /**

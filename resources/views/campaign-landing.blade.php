@@ -53,12 +53,18 @@
                 >
                 </div>
             </div>
+            <div class="text-center mt-4" x-show="showClient"
+                x-transition:enter="transition ease-in duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+            >
+                <span class="font-semibold">We have found a KA in your region with a lower rate</span><br />
+                <span x-show="secondsLeft"><a href="{{ $client->homepage_url }}" class="font-semibold text-red-600">Click here</a> to visit their homepage immediately or wait...<span x-text="secondsLeft"></span> <span x-text="seconds"></span> to be redirected automatically</span>
+                <span x-show="!secondsLeft">Redirecting...</span>
+            </div>
         </div>
     </div>
 
-</div>
-<div class="mt-4 flex justify-center">
-    <iframe id="iframe" src="{{ route('iframe-client-landing-page', ['id' => $client->id]) }}" scrolling="no" onload="adjustIframe()" frameborder="0" allowtransparency="true" style="display: block; border: none; width: 100%; overflow:hidden;" target="_parent"></iframe>
 </div>
 @endsection
 <script>
@@ -67,30 +73,43 @@
             price: {{ $price }},
             width: 1,
             stepSize: 1,
+            showClient: false,
+            secondsLeft: 5,
+            seconds: 'seconds',
             modifyPrice() {
                 let id=setInterval(frame, 35);
                 let elem = document.getElementById("progress-bar");
                 var self = this;
                 self.stepSize = self.price/100;
-                self.price = 25000/100;
+                self.price = self.price/100;
                 function frame() {
                     if (self.width >= 100) {
                         clearInterval(id);
+                        self.showClient = true;
+                        self.redirectCountdown();
                     } else {
                         self.price+=self.stepSize
                         self.width++;
                         elem.style.width = self.width + '%';
                     }
                 }
+            },
+            redirectCountdown() {
+                console.log('here');
+                let id = setInterval(countdown, 1000);
+                var self = this;
+                function countdown() {
+                    if (self.secondsLeft == 0) {
+                        clearInterval(id);
+                        window.location.href = "{{ $client->homepage_url }}"
+                    } else {
+                        self.secondsLeft--;
+                        if (self.secondsLeft < 2) {
+                            self.seconds = 'second';
+                        }
+                    }
+                }
             }
         }
-    }
-
-    function adjustIframe() {
-        var iframe = document.getElementById('iframe');
-        var iframeHeight = iframe.contentWindow.document.body.scrollHeight + 'px';
-        //console.log();
-        iframe.src = '{{ $client->homepage_url }}';
-        iframe.style.height = iframeHeight;
     }
 </script>
