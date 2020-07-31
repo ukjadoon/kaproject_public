@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(MunicipalitySeeder::class);
+        $this->call(MunicipalitySlugSeeder::class);
         if (env('APP_ENV') == 'testing' || env('APP_ENV') == 'local') {
             $this->call(CampaignSeeder::class);
             $this->call(ClientSeeder::class);

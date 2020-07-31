@@ -18,19 +18,20 @@ class CampaignList extends Component
         $this->campaigns = Campaign::orderBy('created_at', 'DESC')->get();
     }
 
-    public function getMunicipalityForCampaign($id)
+    public function getMunicipalitiesForCampaign($id)
     {
         $campaign = $this->campaigns->where('id', $id)->first();
 
-        return $campaign->municipalities ? $this->getMunicipalityNamesForCampaign($campaign) : '';
+        return $campaign->municipalities;
     }
     public function render()
     {
         return view('livewire.campaign-list');
     }
 
-    public function getMunicipalityNamesForCampaign(Campaign $campaign)
+    public function getClientsFormCampaign($id)
     {
-        return implode(', ', $campaign->municipalities->pluck('name')->toArray());
+        $campaign = $this->campaigns->where('id', $id)->first();
+        return implode(', ', $campaign->clients->pluck('name')->toArray());
     }
 }

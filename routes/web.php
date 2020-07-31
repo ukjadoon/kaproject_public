@@ -23,10 +23,10 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/campaign/{code}', function ($code) {
+Route::get('/campaign/{code}/{slug}', function ($code = '', $slug = '') {
     $campaign = app('App\Campaign')->where('code', $code)->firstOrFail();
     $client = $campaign->clients()->inRandomOrder()->first();
-    $price = $campaign->municipalities()->inRandomOrder()->first()->price;
+    $price = $campaign->municipalities()->where('slug', $slug)->firstOrFail()->price;
     $dangerFrom = $price - 7000;
     $maxLimit = $price + 5000;
 
