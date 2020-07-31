@@ -14,12 +14,12 @@
                 data-width="200"
                 data-height="200"
                 data-units="SEK"
-                data-min-value="0"
+                data-min-value="{{ $price - 25000 }}"
                 data-start-angle="90"
                 data-ticks-angle="180"
                 data-value-box="false"
-                data-max-value="30000"
-                data-major-ticks="0,5000,10000,15000,20000,25000,30000"
+                data-max-value="{{ $price + 5000 }}"
+                data-major-ticks="{{ $price - 25000 }},{{ $price - 20000 }},{{ $price - 15000  }},{{ $price - 10000 }},{{ $price - 5000 }},{{ $price }},{{ $price + 5000 }}"
                 data-minor-ticks="1"
                 data-stroke-ticks="true"
                 data-highlights='[
@@ -58,9 +58,9 @@
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
             >
-                <span class="font-semibold">We have found a KA in your region with a lower rate</span><br />
-                <span x-show="secondsLeft"><a href="{{ $client->homepage_url }}" class="font-semibold text-red-600">Click here</a> to visit their homepage immediately or wait...<span x-text="secondsLeft"></span> <span x-text="seconds"></span> to be redirected automatically</span>
-                <span x-show="!secondsLeft">Redirecting...</span>
+                <span class="font-semibold">Vi har hittat en KA i din region med en lägre kostnad</span><br />
+                <span x-show="secondsLeft"><a href="{{ $client->homepage_url }}" class="font-semibold text-red-600">Klicka här</a> för att besöka deras hemsida omedelbart eller vänta...<span x-text="secondsLeft"></span> <span x-text="seconds"></span> för att bli omdirigerad automatiskt</span>
+                <span x-show="!secondsLeft">omdirigerar...</span>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
             stepSize: 1,
             showClient: false,
             secondsLeft: 5,
-            seconds: 'seconds',
+            seconds: 'sekunder',
             modifyPrice() {
                 let id=setInterval(frame, 35);
                 let elem = document.getElementById("progress-bar");
@@ -105,7 +105,7 @@
                     } else {
                         self.secondsLeft--;
                         if (self.secondsLeft < 2) {
-                            self.seconds = 'second';
+                            self.seconds = 'sekund';
                         }
                     }
                 }

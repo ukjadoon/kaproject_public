@@ -27,7 +27,7 @@ Route::get('/campaign/{code}/{slug}', function ($code = '', $slug = '') {
     $campaign = app('App\Campaign')->where('code', $code)->firstOrFail();
     $client = $campaign->clients()->inRandomOrder()->first();
     $price = $campaign->municipalities()->where('slug', $slug)->firstOrFail()->price;
-    $dangerFrom = $price - 7000;
+    $dangerFrom = $price - 5000;
     $maxLimit = $price + 5000;
 
     return view('campaign-landing', compact('campaign', 'client', 'dangerFrom', 'maxLimit', 'price'));
