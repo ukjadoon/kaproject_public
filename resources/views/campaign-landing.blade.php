@@ -14,12 +14,12 @@
                 data-width="200"
                 data-height="200"
                 data-units="SEK"
-                data-min-value="{{ $price - 25000 }}"
+                data-min-value="{{ $price - 20000 }}"
                 data-start-angle="90"
                 data-ticks-angle="180"
                 data-value-box="false"
-                data-max-value="{{ $price + 5000 }}"
-                data-major-ticks="{{ $price - 25000 }},{{ $price - 20000 }},{{ $price - 15000  }},{{ $price - 10000 }},{{ $price - 5000 }},{{ $price }},{{ $price + 5000 }}"
+                data-max-value="{{ $maxLimit }}"
+                data-major-ticks="{{ $price - 20000 }},{{ $price - 15000 }},{{ $price - 10000  }},{{ $price - 5000 }},{{ $price }},{{ $maxLimit }}"
                 data-minor-ticks="1"
                 data-stroke-ticks="true"
                 data-highlights='[
@@ -58,7 +58,7 @@
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
             >
-                <span class="font-semibold">Vi har hittat en KA i din region med en lägre kostnad</span><br />
+                <span class="font-semibold">Vi har hittat en billigare KA i din region</span><br />
                 <span x-show="secondsLeft"><a href="{{ $client->homepage_url }}" class="font-semibold text-red-600">Klicka här</a> för att besöka deras hemsida omedelbart eller vänta...<span x-text="secondsLeft"></span> <span x-text="seconds"></span> för att bli omdirigerad automatiskt</span>
                 <span x-show="!secondsLeft">omdirigerar...</span>
             </div>
