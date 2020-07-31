@@ -58,7 +58,7 @@
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
             >
-                <span class="font-semibold">Vi har hittat en billigare KA i din region</span><br />
+                <span class="font-semibold">Vi har hittat en mer prisvärd KA i din region</span><br />
                 <span x-show="secondsLeft"><a href="{{ $client->homepage_url }}" class="font-semibold text-red-600">Klicka här</a> för att besöka deras hemsida omedelbart eller vänta...<span x-text="secondsLeft"></span> <span x-text="seconds"></span> för att bli omdirigerad automatiskt</span>
                 <span x-show="!secondsLeft">omdirigerar...</span>
             </div>
