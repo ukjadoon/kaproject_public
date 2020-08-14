@@ -18,8 +18,8 @@
           </button>
         </div>
         <nav class="hidden md:flex space-x-10">
-          <a href="#om" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
-            Om
+          <a href="#vara-tjanster" class="text-gray-500 inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 transition ease-in-out duration-150">
+            Våra tjänster
           </a>
           <a href="#rekommendationer" class="text-base leading-6 font-medium text-gray-500 hover:text-gray-900 transition ease-in-out duration-150">
             Rekommendationer
@@ -184,7 +184,7 @@
       <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
           <div class="bg-white px-6 py-8 lg:flex-shrink-1 lg:p-12">
-            <a name="om"></a>
+            <a name="vara-tjanster"></a>
             <h3 class="text-2xl leading-8 font-extrabold text-gray-900 sm:text-3xl sm:leading-9">
               Du når alla som bygger i din kommun även om dom bor på andra sidan landet.
             </h3>
