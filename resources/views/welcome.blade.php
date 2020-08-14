@@ -6,7 +6,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
         <div class="w-0 flex-1 flex">
-          <a href="#" class="inline-flex">
+          <a href="/" class="inline-flex">
             <img class="h-8 w-auto sm:h-10" src="/img/ka-logo.png" alt="Byggkostnad logo">
           </a>
         </div>
