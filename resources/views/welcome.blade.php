@@ -127,8 +127,14 @@
               Du når alla som bygger i din kommun även om dom bor på andra sidan landet.
             </h3>
             <div class="mt-8">
-              <div class="flex items-center">
+              <div class="items-center hidden lg:flex">
                 <h4 class="flex-shrink-0 pr-4 bg-white text-sm leading-5 tracking-wider font-semibold uppercase text-red-600">
+                  Kontrollansvariga som får vara med i byggkostnad.se har
+                </h4>
+                <div class="flex-1 border-t-2 border-gray-200"></div>
+              </div>
+              <div class="flex items-center lg:hidden">
+                <h4 class="pr-4 bg-white text-sm leading-5 tracking-wider font-semibold uppercase text-red-600">
                   Kontrollansvariga som får vara med i byggkostnad.se har
                 </h4>
                 <div class="flex-1 border-t-2 border-gray-200"></div>
