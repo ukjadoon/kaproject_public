@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="relative bg-gray-50">
-  <div class="relative bg-white shadow">
+  <div class="relative bg-white shadow" x-data="{mobile: false}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
         <div class="w-0 flex-1 flex">
@@ -11,7 +11,7 @@
           </a>
         </div>
         <div class="-mr-2 -my-2 md:hidden">
-          <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+          <button x-on:click="mobile = !mobile" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -48,7 +48,15 @@
         From: "opacity-100 scale-100"
         To: "opacity-0 scale-95"
     -->
-    <div class="absolute top-0 inset-x-0 z-10 p-2 transition transform origin-top-right md:hidden">
+    <div class="absolute top-0 inset-x-0 z-10 p-2 transition transform origin-top-right md:hidden"
+      x-show="mobile"
+      x-transition-enter="duration-300 ease-linear transition-opacity transition-scale"
+      x-transition:enter-start="opacity-0 scale-95"
+      x-transition:enter-end="opacity-100 scale-100"
+      x-transition:leave="duration-100 ease-in"
+      x-transition:leave-start="opacity-100 scale-100"
+      x-transition:leave-end="opacity-0 scale-95"
+    >
       <div class="rounded-lg shadow-lg">
         <div class="rounded-lg shadow-xs bg-white divide-y-2 divide-gray-50">
           <div class="pt-5 pb-6 px-5 space-y-6">
@@ -57,7 +65,7 @@
                 <img class="h-8 w-auto" src="/img/ka-logo.png" alt="Byggkostnad logo">
               </div>
               <div class="-mr-2">
-                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                <button x-on:click="mobile = !mobile" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                   <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                   </svg>
@@ -68,7 +76,7 @@
           <div class="py-6 px-5 space-y-6">
             <div class="space-y-6">
               <span class="w-full flex rounded-md shadow-sm">
-                <a href="#" class="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150">
+                <a href="{{ route('login') }}" class="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150">
                   Logga in
                 </a>
               </span>
