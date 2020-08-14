@@ -28,13 +28,13 @@
             Kontakt
           </a>
         </nav>
-        <div class="hidden md:flex items-center justify-end space-x-8 md:flex-1 lg:w-0">
+        <!--div class="hidden md:flex items-center justify-end space-x-8 md:flex-1 lg:w-0">
           <span class="inline-flex rounded-md shadow-sm">
             <a href="{{ route('login') }}" class="whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150">
               Logga in
             </a>
           </span>
-        </div>
+        </div-->
       </div>
     </div>
 
@@ -74,13 +74,24 @@
             </div>
           </div>
           <div class="py-6 px-5 space-y-6">
-            <div class="space-y-6">
+            <div class="grid grid-cols-2 row-gap-4 col-gap-8">
+              <a href="#vara-tjanster" class="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150">
+                Våra tjänster
+              </a>
+              <a href="#rekommendationer" class="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150">
+                Rekommendationer
+              </a>
+              <a href="#kontakt" class="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150">
+                Kontakt
+              </a>
+            </div>
+            <!--div class="space-y-6">
               <span class="w-full flex rounded-md shadow-sm">
                 <a href="{{ route('login') }}" class="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150">
                   Logga in
                 </a>
               </span>
-            </div>
+            </div-->
           </div>
         </div>
       </div>
