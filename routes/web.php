@@ -23,7 +23,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/campaign/{code}/{slug}', function ($code = '', $slug = '') {
+Route::get('/campaign/{code}/kommun/{slug}', function ($code = '', $slug = '') {
     $campaign = app('App\Campaign')->where('code', $code)->firstOrFail();
     $client = $campaign->clients()->inRandomOrder()->first();
     $price = $campaign->municipalities()->where('slug', $slug)->firstOrFail()->price;
@@ -32,6 +32,13 @@ Route::get('/campaign/{code}/{slug}', function ($code = '', $slug = '') {
 
     return view('campaign-landing', compact('campaign', 'client', 'dangerFrom', 'maxLimit', 'price'));
 })->name('campaign-landing');
+
+Route::get('/campaign/{code}', function ($code = '') {
+    //$campaign = app('App\Campaign')->where('code', $code)->firstOrFail();
+    $campaign = app('App\Campaign')->inRandomOrder()->firstOrFail();
+
+    return view('campaign-client-landing')->with(compact('campaign'));
+});
 
 Route::get('/backend', function () {
 

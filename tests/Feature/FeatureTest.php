@@ -45,8 +45,9 @@ test('It should have a campaign landing page', function () {
     factory(Campaign::class)->create();
     $campaign = Campaign::first();
     $campaignCode = $campaign->code;
-    $this->get('/campaign/' . $campaignCode)
-        ->assertOk();
+    $response = $this->get('/campaign/' . $campaignCode);
+    $response->assertOk();
+    $response->assertViewIs('campaign-client-landing');
 });
 
 test('it should see Campaigns on the campaign create page', function () {
