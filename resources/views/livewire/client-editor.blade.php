@@ -1,6 +1,6 @@
 <div class="bg-white shadow-lg rounded-lg p-10">
 <form>
-  <div>
+  <div x-data="{ clientType: {{ $client['type'] }} }">
     <div>
       <div>
         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -22,6 +22,36 @@
           <x-dashboard.error property="client.name"></x-dashboard.error>
         </div>
 
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+        <div class="sm:col-span-2">
+            <label for="clientType" class="block text-sm font-medium leading-5 text-gray-700">Client Type</label>
+            <select id="clientType" wire:model="client.type" x-model="clientType" name="client" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+              <option x-bind:selected="clientType == 0" value="0">Redirect to homepage</option>
+              <option x-bind:selected="clientType == 1" value="1">Question form</option>
+            </select>
+            <x-dashboard.error property="client.type"></x-dashboard.error>
+        </div>
+
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6" x-show="clientType == 0">
+    
+        <div class="sm:col-span-3">
+          <label for="homepage" class="block text-sm font-medium leading-5 text-gray-700">
+            Homepage of the client
+          </label>
+          <div class="mt-1 rounded-md shadow-sm">
+            <input id="homepage" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" wire:model.lazy="client.homepage_url">
+          </div>
+          <x-dashboard.error property="client.homepage_url"></x-dashboard.error>
+        </div>
+
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6" x-show="clientType == 1">
+
         <div class="sm:col-span-2">
           <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
             Email address
@@ -32,7 +62,7 @@
           <x-dashboard.error property="client.email"></x-dashboard.error>
         </div>
 
-        <div class="sm:col-span-2">
+        <div class="sm:col-span-2" x-show="clientType == 1">
           <label for="phone" class="block text-sm font-medium leading-5 text-gray-700">
             Contact number
           </label>
@@ -42,9 +72,9 @@
           <x-dashboard.error property="client.contact_number"></x-dashboard.error>
         </div>
 
-        <div class="sm:col-span-6">
+        <div class="sm:col-span-6" x-show="clientType == 1">
           <label for="photo" class="block text-sm leading-5 font-medium text-gray-700">
-            Photo
+            Avatar
           </label>
           <div class="mt-2 flex items-center">
             <span class="h-12 w-12 rounded-full overflow-hidden bg-gray-100">
@@ -60,17 +90,8 @@
           </div>
         </div>
 
-        <div class="sm:col-span-3">
-          <label for="homepage" class="block text-sm font-medium leading-5 text-gray-700">
-            Homepage of the client
-          </label>
-          <div class="mt-1 rounded-md shadow-sm">
-            <input id="homepage" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" wire:model.lazy="client.homepage_url">
-          </div>
-          <x-dashboard.error property="client.homepage_url"></x-dashboard.error>
-        </div>
 
-        <div class="sm:col-span-6">
+        <div class="sm:col-span-6" x-show="clientType == 1">
           <label for="about" class="block text-sm font-medium leading-5 text-gray-700">
             About
           </label>

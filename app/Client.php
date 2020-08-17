@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    protected $fillable = ['name', 'email', 'homepage_url', 'about', 'contact_number', 'typeform_survey_code', 'typeform_chatbot_code'];
+    protected $fillable = ['name', 'email', 'homepage_url', 'about', 'contact_number', 'typeform_survey_code', 'typeform_chatbot_code', 'type'];
+
+    public const TYPE_REDIRECT = 0;
+    public const TYPE_FORM = 1;
 
     public function campaigns()
     {

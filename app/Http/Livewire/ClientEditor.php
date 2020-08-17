@@ -64,7 +64,8 @@ class ClientEditor extends Component
     {
         $validatedData = $this->validate([
             'client.name' => 'required|min:3|string',
-            'client.email' => 'required|email',
+            'client.type' => 'required',
+            'client.email' => 'email',
             'client.homepage_url' => 'url|nullable',
             'client.about' => 'string|nullable',
             'client.contact_number' => 'string|nullable',
