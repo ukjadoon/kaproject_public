@@ -1,6 +1,6 @@
 <div class="bg-white shadow-lg rounded-lg p-10">
 <form>
-  <div x-data="{ clientType: {{ $client['type'] }} }">
+  <div>
     <div>
       <div>
         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -27,16 +27,17 @@
       <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
         <div class="sm:col-span-2">
             <label for="clientType" class="block text-sm font-medium leading-5 text-gray-700">Client Type</label>
-            <select id="clientType" wire:model="client.type" x-model="clientType" name="client" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
-              <option x-bind:selected="clientType == 0" value="0">Redirect to homepage</option>
-              <option x-bind:selected="clientType == 1" value="1">Question form</option>
+            <select id="clientType" wire:model="clientType" name="client" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+              <option value="0">Redirect to homepage</option>
+              <option value="1">Question form</option>
             </select>
             <x-dashboard.error property="client.type"></x-dashboard.error>
         </div>
 
       </div>
 
-      <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6" x-show="clientType == 0">
+      @if ($clientType == App\Client::TYPE_REDIRECT)
+      <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
     
         <div class="sm:col-span-3">
           <label for="homepage" class="block text-sm font-medium leading-5 text-gray-700">
@@ -49,8 +50,10 @@
         </div>
 
       </div>
+      @endif
 
-      <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6" x-show="clientType == 1">
+      @if ($clientType == App\Client::TYPE_FORM)
+      <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
 
         <div class="sm:col-span-2">
           <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
@@ -62,7 +65,7 @@
           <x-dashboard.error property="client.email"></x-dashboard.error>
         </div>
 
-        <div class="sm:col-span-2" x-show="clientType == 1">
+        <div class="sm:col-span-2">
           <label for="phone" class="block text-sm font-medium leading-5 text-gray-700">
             Contact number
           </label>
@@ -72,7 +75,7 @@
           <x-dashboard.error property="client.contact_number"></x-dashboard.error>
         </div>
 
-        <div class="sm:col-span-6" x-show="clientType == 1">
+        <div class="sm:col-span-6">
           <label for="photo" class="block text-sm leading-5 font-medium text-gray-700">
             Avatar
           </label>
@@ -91,7 +94,7 @@
         </div>
 
 
-        <div class="sm:col-span-6" x-show="clientType == 1">
+        <div class="sm:col-span-6">
           <label for="about" class="block text-sm font-medium leading-5 text-gray-700">
             About
           </label>
@@ -103,6 +106,34 @@
 
         <x-dashboard-clients-logo :logo="$logo" :client="$client"></x-dashboard.clients.logo>
       </div>
+      @endif
+
+
+
+      @if ($clientType == App\Client::TYPE_FORM)
+      <div class="sm:col-span-6 mt-4">
+        <div>
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Question form
+          </h3>
+          <p class="mt-1 text-sm leading-5 text-gray-500">
+            These questions will be asked from a user before they submit their name and email.
+          </p>
+        </div>
+        <div class="mt-2" x-data="initializeQuestion()">
+          <span class="inline-flex rounded-md shadow-sm">
+            <button type="button" x-on:click.prevent="addQuestion()" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out" wire:click.prevent="initialize()">
+            Add question
+            </button>
+            <template x-for="question in questions">
+              <div>
+                Add option
+              </div>
+            </template>
+          </span>
+        </div>
+      </div>
+      @endif
     </div>
     <x-dashboard.choose-municipalities :municipalities="$municipalities" :chosenMunicipalityNames="$chosenMunicipalityNames" :checkedMunicipalities="$checkedMunicipalities"></x-dashboard.choose-municipalities>
   </div>
@@ -121,5 +152,15 @@
     </div>
   </div>
 </form>
-
 </div>
+
+<script>
+  function initializeQuestion() {
+    return {
+      questions: [],
+      addQuestion: function () {
+        this.questions.push([{ question: '', options:[] }]);
+      }
+    };
+  };
+</script>

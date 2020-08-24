@@ -20,6 +20,8 @@ class ClientEditor extends Component
 
     public $client;
 
+    public $clientType;
+
     public $municipalities;
 
     public $checkedMunicipalities;
@@ -44,6 +46,7 @@ class ClientEditor extends Component
     public function initialize()
     {
         $this->clientModel = Client::findOrFail($this->clientId);
+        $this->clientType = $this->clientModel->type;
         $this->client = $this->clientModel->toArray();
         $this->municipalities = Municipality::all();
         $this->checkedMunicipalities = $this->clientModel->municipalities->pluck('id')->transform(function ($value) { return (string) $value; });

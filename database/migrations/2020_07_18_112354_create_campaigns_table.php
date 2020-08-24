@@ -24,6 +24,7 @@ class CreateCampaignsTable extends Migration
             $table->foreign('city_id')
                 ->references('id')
                 ->on('cities');
+            $table->json('questions')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
